@@ -1,8 +1,10 @@
 package com.outplaysoftworks.sidedeck;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +25,18 @@ import butterknife.OnClick;
  * create an instance of this fragment.
  */
 public class LpCalculator extends Fragment {
-
+    LpCalculatorModel mLpCalculatorModel;
     //Butterknife Viewbindings
     @BindView(R.id.LpCalculatorTextEnteredValue)
     TextView tvEnteredValue;
+    @BindView(R.id.LpCalculatorTextPlayer1Lp)
+    TextView tvPlayer1Lp;
+    @BindView(R.id.LpCalculatorTextPlayer2Lp)
+    TextView tvPlayer2Lp;
+    @BindView(R.id.LpCalculatorTextPlayer1Name)
+    TextView tvPlayer1Name;
+    @BindView   (R.id.LpCalculatorTextPlayer2Name)
+    TextView tvPlayer2Name;
 
 
     private OnFragmentInteractionListener mListener;
@@ -41,7 +51,6 @@ public class LpCalculator extends Fragment {
      *
      * @return A new instance of fragment LpCalculator.
      */
-    // TODO: Rename and change types and number of parameters
     public static LpCalculator newInstance() {
         LpCalculator fragment = new LpCalculator();
         Bundle args = new Bundle();
@@ -53,6 +62,7 @@ public class LpCalculator extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
@@ -64,7 +74,26 @@ public class LpCalculator extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_lp_calculator, container, false);
         ButterKnife.bind(this, view);
+        mLpCalculatorModel = new LpCalculatorModel(getContext());
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        initFromSettings();
+    }
+
+    private void initFromSettings() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        mLpCalculatorModel.setLpDefault(Integer.parseInt(preferences.getString(getString(R.string.KEYdefaultLpSetting), "8000")));
+        mLpCalculatorModel.setPlayer1Name(preferences.getString(getString(R.string.KEYplayerOneDefaultNameSetting), getString(R.string.playerOne)));
+        mLpCalculatorModel.setPlayer2Name(preferences.getString(getString(R.string.KEYplayerTwoDefaultNameSetting), getString(R.string.playerTwo)));
+        mLpCalculatorModel.setAllowsNegativeLp(preferences.getBoolean(getString(R.string.KEYallowNegativeLp), false));
+        tvPlayer1Lp.setText(Integer.toString(mLpCalculatorModel.getLpDefault()));
+        tvPlayer2Lp.setText(Integer.toString(mLpCalculatorModel.getLpDefault()));
+        tvPlayer1Name.setText(mLpCalculatorModel.getPlayer1Name());
+        tvPlayer2Name.setText(mLpCalculatorModel.getPlayer2Name());
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -102,7 +131,6 @@ public class LpCalculator extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
@@ -112,13 +140,14 @@ public class LpCalculator extends Fragment {
             R.id.LpCalculatorButton7, R.id.LpCalculatorButton8, R.id.LpCalculatorButton9})
     public void onClickCalculatorNumber(View view){
         int amount = Integer.parseInt(view.getTag().toString());
-        if(LpCalculatorModel.appendToEnteredValue(amount)){
+        if(mLpCalculatorModel.appendToEnteredValue(amount)){
             onEnteredValueUpdated();
         }
     }
 
     public void onEnteredValueUpdated(){
         //TODO: Animations!
-        tvEnteredValue.setText(Integer.toString(LpCalculatorModel.getEnteredValue()));
+        tvEnteredValue.setText(Integer.toString(mLpCalculatorModel.getEnteredValue()));
     }
+
 }

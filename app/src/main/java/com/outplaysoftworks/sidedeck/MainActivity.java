@@ -33,6 +33,12 @@ public class MainActivity extends AppCompatActivity implements LpCalculator.OnFr
      */
     private ViewPager mViewPager;
 
+    private static LpCalculator mLpCalculator;
+
+    public static LpCalculator getLpCalculator(){
+        return mLpCalculator;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +118,8 @@ public class MainActivity extends AppCompatActivity implements LpCalculator.OnFr
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
                 case 0:
-                    return LpCalculator.newInstance();
+                    mLpCalculator = LpCalculator.newInstance();
+                    return mLpCalculator;
                 case 1:
                     return LpLog.newInstance();
                 default:
