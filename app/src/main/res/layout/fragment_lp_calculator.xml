@@ -14,7 +14,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/LpCalculatorTextPlayer1Lp"
             style="@style/Text.PlayerLp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -23,7 +23,7 @@
             tools:text="9999999" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/LpCalculatorButtonTurn"
             style="@style/Button.Function"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -32,7 +32,7 @@
             tools:text="TURN 99" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/LpCalculatorTextPlayer2Lp"
             style="@style/Text.PlayerLp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -48,7 +48,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/LpCalculatorTextPlayer1Name"
             style="@style/Text.PlayerName"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -58,7 +58,7 @@
             tools:text="PLAYER NAME" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/LpCalculatorTextEnteredValue"
             style="@style/Text.LpInput"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -68,7 +68,7 @@
             tools:text="999999" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/LpCalculatorTextPlayer2Name"
             style="@style/Text.PlayerName"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -86,7 +86,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/LpCalculatorButtonPlusPlayer1"
             style="@style/Button.Plus"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -95,7 +95,7 @@
             tools:text="+" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/LpCalculatorButtonDice"
             style="@style/Button.Function"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -104,7 +104,7 @@
             tools:text="DICE ROLL" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/LpCalculatorButtonPlusPlayer2"
             style="@style/Button.Plus"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -120,7 +120,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/LpCalculatorButtonMinusPlayer1"
             style="@style/Button.Minus"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -129,7 +129,7 @@
             tools:text="-" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/LpCalculatorButtonCoin"
             style="@style/Button.Function"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -138,7 +138,7 @@
             tools:text="COIN FLIP" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/LpCalculatorButtonMinusPlayer2"
             style="@style/Button.Minus"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -154,30 +154,33 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/LpCalculatorButton7"
             style="@style/Button.Number"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:tag="7"
             android:text="7" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/LpCalculatorButton8"
             style="@style/Button.Number"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:tag="8"
             android:text="8" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/LpCalculatorButton9"
             style="@style/Button.Number"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:tag="9"
             android:text="9" />
     </LinearLayout>
 
@@ -188,30 +191,33 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/LpCalculatorButton4"
             style="@style/Button.Number"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:tag="4"
             android:text="4" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/LpCalculatorButton5"
             style="@style/Button.Number"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:tag="5"
             android:text="5" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/LpCalculatorButton6"
             style="@style/Button.Number"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:tag="6"
             android:text="6" />
     </LinearLayout>
 
@@ -222,30 +228,33 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/LpCalculatorButton1"
             style="@style/Button.Number"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:tag="1"
             android:text="1" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/LpCalculatorButton2"
             style="@style/Button.Number"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:tag="2"
             android:text="2" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/LpCalculatorButton3"
             style="@style/Button.Number"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:tag="3"
             android:text="3" />
     </LinearLayout>
 
@@ -256,30 +265,33 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/LpCalculatorButton0"
             style="@style/Button.Number"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:tag="0"
             android:text="0" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/LpCalculatorButton00"
             style="@style/Button.Number"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:tag="00"
             android:text="00" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/LpCalculatorButton000"
             style="@style/Button.Number"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:tag="000"
             android:text="000" />
     </LinearLayout>
 
@@ -290,7 +302,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/LpCalculatorButtonTimer"
             style="@style/Button.Function"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -299,7 +311,7 @@
             tools:text="TIMER" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/LpCalculatorButtonCalc"
             style="@style/Button.Function"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -308,7 +320,7 @@
             tools:text="CALC" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/LpCalculatorButtonClear"
             style="@style/Button.Function"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -317,7 +329,7 @@
             tools:text="CLEAR" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/LpCalculatorButtonReset"
             style="@style/Button.Function"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -326,7 +338,7 @@
             tools:text="RESET" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/LpCalculatorButtonUndo"
             style="@style/Button.Function"
             android:layout_width="0dp"
             android:layout_height="match_parent"

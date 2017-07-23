@@ -2,7 +2,7 @@
 <resources>
     <color name="trans">#00b3e5fc</color>
     <color name="colorPrimaryDark">#252525</color>
-    <color name="colorPrimary">#d4252525</color>
+    <color name="colorPrimary">#272727</color>
     <color name="colorGrayLight">#787878</color>
     <color name="colorGrayLightPressed">#6e6e6e</color>
     <color name="colorGrayDark">#505050</color>

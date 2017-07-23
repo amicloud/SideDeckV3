@@ -7,6 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
@@ -18,14 +23,11 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class LpCalculator extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    //Butterknife Viewbindings
+    @BindView(R.id.LpCalculatorTextEnteredValue)
+    TextView tvEnteredValue;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -37,16 +39,14 @@ public class LpCalculator extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment LpCalculator.
      */
     // TODO: Rename and change types and number of parameters
-    public static LpCalculator newInstance(String param1, String param2) {
+    public static LpCalculator newInstance() {
         LpCalculator fragment = new LpCalculator();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,8 +55,6 @@ public class LpCalculator extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -64,7 +62,9 @@ public class LpCalculator extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lp_calculator, container, false);
+        View view = inflater.inflate(R.layout.fragment_lp_calculator, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -104,5 +104,21 @@ public class LpCalculator extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @OnClick({R.id.LpCalculatorButton0, R.id.LpCalculatorButton00, R.id.LpCalculatorButton000,
+            R.id.LpCalculatorButton1, R.id.LpCalculatorButton2, R.id.LpCalculatorButton3,
+            R.id.LpCalculatorButton4, R.id.LpCalculatorButton5, R.id.LpCalculatorButton6,
+            R.id.LpCalculatorButton7, R.id.LpCalculatorButton8, R.id.LpCalculatorButton9})
+    public void onClickCalculatorNumber(View view){
+        int amount = Integer.parseInt(view.getTag().toString());
+        if(LpCalculatorModel.appendToEnteredValue(amount)){
+            onEnteredValueUpdated();
+        }
+    }
+
+    public void onEnteredValueUpdated(){
+        //TODO: Animations!
+        tvEnteredValue.setText(Integer.toString(LpCalculatorModel.getEnteredValue()));
     }
 }
