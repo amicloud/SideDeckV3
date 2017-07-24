@@ -1,5 +1,6 @@
 package com.outplaysoftworks.sidedeck;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -34,6 +35,7 @@ public class CalculatorModelTests {
         mStringToBetyped = "Espresso";
     }
 
+    @SuppressLint("ApplySharedPref")
     @Before
     public void initSettingsForTesting(){
         Context context = getInstrumentation().getTargetContext();
@@ -41,8 +43,8 @@ public class CalculatorModelTests {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(context.getString(R.string.KEYplayerOneDefaultNameSetting), "Player 1");
         editor.putString(context.getString(R.string.KEYplayerTwoDefaultNameSetting), "Player 2");
-        editor.putInt(context.getString(R.string.KEYdefaultLpSetting),8000);
-
+        editor.putString(context.getString(R.string.KEYdefaultLpSetting), "8000");
+        editor.commit();
     }
 
     @Test
@@ -108,5 +110,55 @@ public class CalculatorModelTests {
         onView(withId(R.id.LpCalculatorButton6)).perform(click());
         onView(withId(R.id.LpCalculatorTextEnteredValue)).perform(click());
         onView(withId(R.id.LpCalculatorTextEnteredValue)).check(matches(withText("")));
+    }
+
+    @Test
+    public void onClickDoubleZero_appendsDoubleZero(){
+        onView(withId(R.id.LpCalculatorButton1)).perform(click());
+        onView(withId(R.id.LpCalculatorButton00)).perform(click());
+        onView(withId(R.id.LpCalculatorTextEnteredValue)).check(matches(withText("100")));
+    }
+
+    @Test
+    public void onClickTripleZero_appendsTripleZero(){
+        onView(withId(R.id.LpCalculatorButton1)).perform(click());
+        onView(withId(R.id.LpCalculatorButton000)).perform(click());
+        onView(withId(R.id.LpCalculatorTextEnteredValue)).check(matches(withText("1000")));
+    }
+
+    @Test
+    public void onClickPlusP1_addsToP1Lp(){
+        //Add 1000 to entered value
+        onView(withId(R.id.LpCalculatorButton1)).perform(click());
+        onView(withId(R.id.LpCalculatorButton000)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonPlusPlayer1)).perform(click());
+        onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("9000")));
+    }
+
+    @Test
+    public void onClickPlusP2_addsToP2Lp(){
+        //Add 1000 to entered value
+        onView(withId(R.id.LpCalculatorButton1)).perform(click());
+        onView(withId(R.id.LpCalculatorButton000)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonPlusPlayer2)).perform(click());
+        onView(withId(R.id.LpCalculatorTextPlayer2Lp)).check(matches(withText("9000")));
+    }
+
+    @Test
+    public void onClickMinusP1_subtractsFromP1Lp(){
+        //Add 1000 to entered value
+        onView(withId(R.id.LpCalculatorButton1)).perform(click());
+        onView(withId(R.id.LpCalculatorButton000)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonMinusPlayer1)).perform(click());
+        onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("7000")));
+    }
+
+    @Test
+    public void onClickMinusP2_subtractsFromP2Lp(){
+        //Add 1000 to entered value
+        onView(withId(R.id.LpCalculatorButton1)).perform(click());
+        onView(withId(R.id.LpCalculatorButton000)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonMinusPlayer2)).perform(click());
+        onView(withId(R.id.LpCalculatorTextPlayer2Lp)).check(matches(withText("7000")));
     }
 }

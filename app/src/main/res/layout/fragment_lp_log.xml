@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.outplaysoftworks.sidedeck.LpLog">
+    tools:textView="com.outplaysoftworks.sidedeck.LpLog">
 
     <!--TODO: Hook up to adapter https://www.androidhive.info/2013/07/android-expandable-list-view-tutorial/-->
     <ExpandableListView

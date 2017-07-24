@@ -34,9 +34,9 @@ public class LpCalculatorModel {
      * @param i Integer to append to entered value
      * @return Returns true if successful, returns false otherwise.
      */
-    boolean appendToEnteredValue(int i) {
+    boolean appendToEnteredValue(String i) {
         String evString = Integer.toString(mEnteredValue);
-        String appendedString = evString + Integer.toString(i);
+        String appendedString = evString + i;
         if (Integer.toString(mEnteredValue).length() < 6) {
             setEnteredValue(Integer.parseInt(appendedString));
             return true;
@@ -80,5 +80,37 @@ public class LpCalculatorModel {
 
     public void setAllowsNegativeLp(boolean allowsNegativeLp) {
         this.allowsNegativeLp = allowsNegativeLp;
+    }
+
+    public void addLpToPlayer1(int amount) {
+        player1Lp += amount;
+    }
+
+    public void addLpToPlayer2(int amount) {
+        player2Lp += amount;
+    }
+
+    public void subtractLpFromPlayer1(int amount){
+        player1Lp -= amount;
+    }
+
+    public void subtractLpFromPlayer2(int amount){
+        player2Lp -= amount;
+    }
+
+    public int getPlayer1Lp() {
+        return player1Lp;
+    }
+
+    public void setPlayer1Lp(int player1Lp) {
+        this.player1Lp = player1Lp;
+    }
+
+    public int getPlayer2Lp() {
+        return player2Lp;
+    }
+
+    public void setPlayer2Lp(int player2Lp) {
+        this.player2Lp = player2Lp;
     }
 }

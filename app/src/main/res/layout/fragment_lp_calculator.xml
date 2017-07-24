@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.outplaysoftworks.sidedeck.LpCalculator">
+    tools:textView="com.outplaysoftworks.sidedeck.LpCalculator">
 
     <LinearLayout
         android:layout_width="match_parent"

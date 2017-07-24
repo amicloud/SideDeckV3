@@ -89,6 +89,8 @@ public class LpCalculator extends Fragment {
         mLpCalculatorModel.setLpDefault(Integer.parseInt(preferences.getString(getString(R.string.KEYdefaultLpSetting), "8000")));
         mLpCalculatorModel.setPlayer1Name(preferences.getString(getString(R.string.KEYplayerOneDefaultNameSetting), getString(R.string.playerOne)));
         mLpCalculatorModel.setPlayer2Name(preferences.getString(getString(R.string.KEYplayerTwoDefaultNameSetting), getString(R.string.playerTwo)));
+        mLpCalculatorModel.setPlayer1Lp(mLpCalculatorModel.getLpDefault());
+        mLpCalculatorModel.setPlayer2Lp(mLpCalculatorModel.getLpDefault());
         mLpCalculatorModel.setAllowsNegativeLp(preferences.getBoolean(getString(R.string.KEYallowNegativeLp), false));
         tvPlayer1Lp.setText(Integer.toString(mLpCalculatorModel.getLpDefault()));
         tvPlayer2Lp.setText(Integer.toString(mLpCalculatorModel.getLpDefault()));
@@ -150,7 +152,7 @@ public class LpCalculator extends Fragment {
             R.id.LpCalculatorButton4, R.id.LpCalculatorButton5, R.id.LpCalculatorButton6,
             R.id.LpCalculatorButton7, R.id.LpCalculatorButton8, R.id.LpCalculatorButton9})
     public void onClickCalculatorNumber(View view){
-        int amount = Integer.parseInt(view.getTag().toString());
+        String amount = view.getTag().toString();
         if(mLpCalculatorModel.appendToEnteredValue(amount)){
             onEnteredValueUpdated();
         }
@@ -164,6 +166,34 @@ public class LpCalculator extends Fragment {
 
     @OnClick(R.id.LpCalculatorTextEnteredValue)
     public void onClickEnteredValue(View view){
+        clearEnteredValue();
+    }
+
+    @OnClick(R.id.LpCalculatorButtonPlusPlayer1)
+    public void onClickPlusPlayer1(View view){
+        AddLpCommand command = new AddLpCommand(1, mLpCalculatorModel.getEnteredValue(), mLpCalculatorModel, tvPlayer1Lp);
+        command.execute();
+        clearEnteredValue();
+    }
+
+    @OnClick(R.id.LpCalculatorButtonMinusPlayer1)
+    public void onClickMinusPlayer1(View view){
+        SubtractLpCommand command = new SubtractLpCommand(1, mLpCalculatorModel.getEnteredValue(), mLpCalculatorModel, tvPlayer1Lp);
+        command.execute();
+        clearEnteredValue();
+    }
+
+    @OnClick(R.id.LpCalculatorButtonPlusPlayer2)
+    public void onClickPlusPlayer2(View view){
+        AddLpCommand command = new AddLpCommand(1, mLpCalculatorModel.getEnteredValue(), mLpCalculatorModel, tvPlayer2Lp);
+        command.execute();
+        clearEnteredValue();
+    }
+
+    @OnClick(R.id.LpCalculatorButtonMinusPlayer2)
+    public void onClickMinusPlayer2(View view){
+        SubtractLpCommand command = new SubtractLpCommand(1, mLpCalculatorModel.getEnteredValue(), mLpCalculatorModel, tvPlayer2Lp);
+        command.execute();
         clearEnteredValue();
     }
 

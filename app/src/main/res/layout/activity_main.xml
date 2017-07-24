@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context="com.outplaysoftworks.sidedeck.MainActivity">
+    tools:textView="com.outplaysoftworks.sidedeck.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
