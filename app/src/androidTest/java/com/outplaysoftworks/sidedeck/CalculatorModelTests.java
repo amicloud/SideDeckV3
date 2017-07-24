@@ -161,4 +161,26 @@ public class CalculatorModelTests {
         onView(withId(R.id.LpCalculatorButtonMinusPlayer2)).perform(click());
         onView(withId(R.id.LpCalculatorTextPlayer2Lp)).check(matches(withText("7000")));
     }
+
+    @Test
+    public void onClickUndo_unexecutesLastAddition(){
+        //Add 1000 to entered value
+        onView(withId(R.id.LpCalculatorButton1)).perform(click());
+        onView(withId(R.id.LpCalculatorButton000)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonPlusPlayer1)).perform(click());
+        onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("9000")));
+        onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
+        onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("8000")));
+    }
+
+    @Test
+    public void onClickUndo_unexecutesLastSubtraction(){
+        //Add 1000 to entered value
+        onView(withId(R.id.LpCalculatorButton1)).perform(click());
+        onView(withId(R.id.LpCalculatorButton000)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonMinusPlayer2)).perform(click());
+        onView(withId(R.id.LpCalculatorTextPlayer2Lp)).check(matches(withText("7000")));
+        onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
+        onView(withId(R.id.LpCalculatorTextPlayer2Lp)).check(matches(withText("8000")));
+    }
 }

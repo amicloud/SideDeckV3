@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:orientation="horizontal">
 
         <TextView
@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:gravity="center"
-            tools:text="9999999" />
+            tools:text="9999999"/>
 
         <Button
             android:id="@+id/LpCalculatorButtonTurn"
@@ -29,7 +29,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            tools:text="TURN 99" />
+            android:text="@string/turn"
+            tools:text="TURN 99"/>
 
         <TextView
             android:id="@+id/LpCalculatorTextPlayer2Lp"
@@ -38,13 +39,13 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:gravity="center"
-            tools:text="9999999" />
+            tools:text="9999999"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:orientation="horizontal">
 
         <TextView
@@ -55,7 +56,7 @@
             android:layout_weight="2"
             android:elevation="1dp"
             android:gravity="center"
-            tools:text="PLAYER NAME" />
+            tools:text="PLAYER NAME"/>
 
         <TextView
             android:id="@+id/LpCalculatorTextEnteredValue"
@@ -65,7 +66,7 @@
             android:layout_weight="1"
             android:elevation="1dp"
             android:gravity="center"
-            tools:text="999999" />
+            tools:text="999999"/>
 
         <TextView
             android:id="@+id/LpCalculatorTextPlayer2Name"
@@ -75,14 +76,14 @@
             android:layout_weight="2"
             android:elevation="1dp"
             android:gravity="center"
-            tools:text="PLAYER NAME" />
+            tools:text="PLAYER NAME"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:orientation="horizontal">
 
         <Button
@@ -92,7 +93,8 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:gravity="center"
-            tools:text="+" />
+            android:text="@string/plusSign"
+            tools:text="+"/>
 
         <Button
             android:id="@+id/LpCalculatorButtonDice"
@@ -101,7 +103,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            tools:text="DICE ROLL" />
+            android:text="@string/diceRoll"
+            tools:text="DICE ROLL"/>
 
         <Button
             android:id="@+id/LpCalculatorButtonPlusPlayer2"
@@ -110,13 +113,14 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:gravity="center"
-            tools:text="+" />
+            android:text="@string/plusSign"
+            tools:text="+"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:orientation="horizontal">
 
         <Button
@@ -126,7 +130,8 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:gravity="center"
-            tools:text="-" />
+            android:text="@string/minusSign"
+            tools:text="-"/>
 
         <Button
             android:id="@+id/LpCalculatorButtonCoin"
@@ -135,7 +140,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            tools:text="COIN FLIP" />
+            android:text="@string/coinFlip"
+            tools:text="COIN FLIP"/>
 
         <Button
             android:id="@+id/LpCalculatorButtonMinusPlayer2"
@@ -144,13 +150,14 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:gravity="center"
-            tools:text="-" />
+            android:text="@string/minusSign"
+            tools:text="-"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:orientation="horizontal">
 
         <Button
@@ -161,7 +168,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:tag="7"
-            android:text="7" />
+            android:text="7"/>
 
         <Button
             android:id="@+id/LpCalculatorButton8"
@@ -171,7 +178,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:tag="8"
-            android:text="8" />
+            android:text="8"/>
 
         <Button
             android:id="@+id/LpCalculatorButton9"
@@ -181,13 +188,13 @@
             android:layout_weight="1"
             android:gravity="center"
             android:tag="9"
-            android:text="9" />
+            android:text="9"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:orientation="horizontal">
 
         <Button
@@ -198,7 +205,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:tag="4"
-            android:text="4" />
+            android:text="4"/>
 
         <Button
             android:id="@+id/LpCalculatorButton5"
@@ -208,7 +215,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:tag="5"
-            android:text="5" />
+            android:text="5"/>
 
         <Button
             android:id="@+id/LpCalculatorButton6"
@@ -218,13 +225,13 @@
             android:layout_weight="1"
             android:gravity="center"
             android:tag="6"
-            android:text="6" />
+            android:text="6"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:orientation="horizontal">
 
         <Button
@@ -235,7 +242,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:tag="1"
-            android:text="1" />
+            android:text="1"/>
 
         <Button
             android:id="@+id/LpCalculatorButton2"
@@ -245,7 +252,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:tag="2"
-            android:text="2" />
+            android:text="2"/>
 
         <Button
             android:id="@+id/LpCalculatorButton3"
@@ -255,13 +262,13 @@
             android:layout_weight="1"
             android:gravity="center"
             android:tag="3"
-            android:text="3" />
+            android:text="3"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:orientation="horizontal">
 
         <Button
@@ -272,7 +279,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:tag="0"
-            android:text="0" />
+            android:text="0"/>
 
         <Button
             android:id="@+id/LpCalculatorButton00"
@@ -282,7 +289,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:tag="00"
-            android:text="00" />
+            android:text="00"/>
 
         <Button
             android:id="@+id/LpCalculatorButton000"
@@ -292,13 +299,13 @@
             android:layout_weight="1"
             android:gravity="center"
             android:tag="000"
-            android:text="000" />
+            android:text="000"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:orientation="horizontal">
 
         <Button
@@ -308,7 +315,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            tools:text="TIMER" />
+            android:text="@string/timer"
+            tools:text="TIMER"/>
 
         <Button
             android:id="@+id/LpCalculatorButtonCalc"
@@ -317,7 +325,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            tools:text="CALC" />
+            android:text="@string/calc"
+            tools:text="CALC"/>
 
         <Button
             android:id="@+id/LpCalculatorButtonClear"
@@ -326,7 +335,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            tools:text="CLEAR" />
+            android:text="@string/clear"
+            tools:text="CLEAR"/>
 
         <Button
             android:id="@+id/LpCalculatorButtonReset"
@@ -335,7 +345,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            tools:text="RESET" />
+            android:text="@string/reset"
+            tools:text="RESET"/>
 
         <Button
             android:id="@+id/LpCalculatorButtonUndo"
@@ -344,6 +355,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            tools:text="UNDO" />
+            android:text="@string/undo"
+            tools:text="UNDO"/>
     </LinearLayout>
 </LinearLayout>

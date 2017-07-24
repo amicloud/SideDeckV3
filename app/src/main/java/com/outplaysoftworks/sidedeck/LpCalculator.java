@@ -171,6 +171,7 @@ public class LpCalculator extends Fragment {
 
     @OnClick(R.id.LpCalculatorButtonPlusPlayer1)
     public void onClickPlusPlayer1(View view){
+        if(tvEnteredValue.getText().equals("")) return;
         AddLpCommand command = new AddLpCommand(1, mLpCalculatorModel.getEnteredValue(), mLpCalculatorModel, tvPlayer1Lp);
         command.execute();
         clearEnteredValue();
@@ -178,6 +179,7 @@ public class LpCalculator extends Fragment {
 
     @OnClick(R.id.LpCalculatorButtonMinusPlayer1)
     public void onClickMinusPlayer1(View view){
+        if(tvEnteredValue.getText().equals("")) return;
         SubtractLpCommand command = new SubtractLpCommand(1, mLpCalculatorModel.getEnteredValue(), mLpCalculatorModel, tvPlayer1Lp);
         command.execute();
         clearEnteredValue();
@@ -185,6 +187,7 @@ public class LpCalculator extends Fragment {
 
     @OnClick(R.id.LpCalculatorButtonPlusPlayer2)
     public void onClickPlusPlayer2(View view){
+        if(tvEnteredValue.getText().equals("")) return;
         AddLpCommand command = new AddLpCommand(1, mLpCalculatorModel.getEnteredValue(), mLpCalculatorModel, tvPlayer2Lp);
         command.execute();
         clearEnteredValue();
@@ -192,10 +195,16 @@ public class LpCalculator extends Fragment {
 
     @OnClick(R.id.LpCalculatorButtonMinusPlayer2)
     public void onClickMinusPlayer2(View view){
+        if(tvEnteredValue.getText().equals("")) return;
         SubtractLpCommand command = new SubtractLpCommand(1, mLpCalculatorModel.getEnteredValue(), mLpCalculatorModel, tvPlayer2Lp);
         command.execute();
         clearEnteredValue();
     }
 
+    @OnClick(R.id.LpCalculatorButtonUndo)
+    public void onClickUndo(){
+        Command previousCommand = CommandDelegator.commandHistory.get(CommandDelegator.commandHistory.size()-1);
+        previousCommand.unExecute();
+    }
 
 }

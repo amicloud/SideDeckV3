@@ -23,19 +23,14 @@ public class SubtractLpCommand implements Command {
     @Override
     public void execute() {
         CommandDelegator.commandHistory.add(this);
-        int previous;
         switch(target){
             case 1:
-                previous = model.getPlayer1Lp();
                 model.subtractLpFromPlayer1(amount);
-                //LpCalculator.onPlayer1LpUpdated(previous, amount);
                 textView.setText(Integer.toString(model.getPlayer1Lp()));
                 return;
             case 2:
-                previous = model.getPlayer2Lp();
                 model.subtractLpFromPlayer2(amount);
                 textView.setText(Integer.toString(model.getPlayer2Lp()));
-                //LpCalculator.onPlayer2LpUpdated(previous, amount);
                 return;
             default:
         }
@@ -43,6 +38,17 @@ public class SubtractLpCommand implements Command {
 
     @Override
     public void unExecute() {
-
+        CommandDelegator.commandHistory.remove(this);
+        switch(target){
+            case 1:
+                model.addLpToPlayer1(amount);
+                textView.setText(Integer.toString(model.getPlayer1Lp()));
+                return;
+            case 2:
+                model.addLpToPlayer2(amount);
+                textView.setText(Integer.toString(model.getPlayer2Lp()));
+                return;
+            default:
+        }
     }
 }
