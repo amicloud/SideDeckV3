@@ -15,8 +15,10 @@ import org.junit.runner.RunWith;
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
+import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.longClick;
+import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -44,6 +46,7 @@ public class LpCalculatorTests {
         Context context = getInstrumentation().getTargetContext();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(context.getString(R.string.KEYallowNegativeLp), false);
         editor.putString(context.getString(R.string.KEYplayerOneDefaultNameSetting), "Player 1");
         editor.putString(context.getString(R.string.KEYplayerTwoDefaultNameSetting), "Player 2");
         editor.putString(context.getString(R.string.KEYdefaultLpSetting), "8000");
@@ -236,5 +239,62 @@ public class LpCalculatorTests {
         onView(withId(R.id.LpCalculatorTextPlayer2Name)).perform(click());
         pressBack();
         onView(withId(R.id.LpCalculatorTextEnteredValue)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void onClickReset_resetsToInitialSettingsKeepingPlayerNames(){
+        //Mess everyting up
+        onView(withId(R.id.LpCalculatorButton1)).perform(click());
+        onView(withId(R.id.LpCalculatorButton2)).perform(click());
+        onView(withId(R.id.LpCalculatorButton3)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonPlusPlayer1)).perform(click());
+        onView(withId(R.id.LpCalculatorButton2)).perform(click());
+        onView(withId(R.id.LpCalculatorButton3)).perform(click());
+        onView(withId(R.id.LpCalculatorButton2)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonMinusPlayer2)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonTurn)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonTurn)).perform(click());
+        onView(withId(R.id.LpCalculatorTextPlayer1Name)).perform(clearText()).perform(typeText("Test"));
+        onView(withId(R.id.LpCalculatorTextPlayer2Name)).perform(clearText()).perform(typeText("Test"));
+        pressBack();
+
+        //Reset
+        onView(withId(R.id.LpCalculatorButtonReset)).perform(click());
+
+        //Check everything
+        onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("8000")));
+        onView(withId(R.id.LpCalculatorTextPlayer2Lp)).check(matches(withText("8000")));
+        onView(withId(R.id.LpCalculatorButtonTurn)).check(matches(withText("Turn\n1")));
+        onView(withId(R.id.LpCalculatorTextPlayer1Name)).check(matches(withText("Test")));
+        onView(withId(R.id.LpCalculatorTextPlayer2Name)).check(matches(withText("Test")));
+    }
+
+    @Test
+    public void onClickSubtract_goesToZeroIfWillMakeNegativeAndAllowNegativeLpIsDisabled(){
+        Context context = getInstrumentation().getTargetContext();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(context.getString(R.string.KEYallowNegativeLp), false);
+        editor.commit();
+
+        onView(withId(R.id.LpCalculatorButton3)).perform(click());
+        onView(withId(R.id.LpCalculatorButton000)).perform(click());
+        onView(withId(R.id.LpCalculatorButton0)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonMinusPlayer1)).perform(click());
+        onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("0")));
+    }
+
+    @Test
+    public void onClickSubtract_goesNegativeIfWillMakeNegativeAndAllowNegativeLpIsEnabled(){
+        Context context = getInstrumentation().getTargetContext();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(context.getString(R.string.KEYallowNegativeLp), true);
+        editor.commit();
+        onView(withId(R.id.LpCalculatorButton3)).perform(click());
+        onView(withId(R.id.LpCalculatorButton000)).perform(click());
+        onView(withId(R.id.LpCalculatorButton0)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonMinusPlayer1)).perform(click());
+        onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("-22000")));
     }
 }

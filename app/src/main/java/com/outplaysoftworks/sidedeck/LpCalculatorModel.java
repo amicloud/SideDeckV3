@@ -89,11 +89,27 @@ public class LpCalculatorModel {
     }
 
     public void subtractLpFromPlayer1(int amount){
+        if(player1Lp - amount < 0){
+            if(allowsNegativeLp){
+                player1Lp -= amount;
+            } else {
+                player1Lp = 0;
+            }
+        } else {
         player1Lp -= amount;
+        }
     }
 
     public void subtractLpFromPlayer2(int amount){
-        player2Lp -= amount;
+        if(player2Lp - amount < 0){
+            if(allowsNegativeLp){
+                player2Lp -= amount;
+            } else {
+                player2Lp = 0;
+            }
+        } else {
+            player2Lp -= amount;
+        }
     }
 
     public int getPlayer1Lp() {

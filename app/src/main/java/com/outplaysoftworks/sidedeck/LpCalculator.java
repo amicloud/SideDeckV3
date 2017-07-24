@@ -6,10 +6,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -36,9 +39,9 @@ public class LpCalculator extends Fragment {
     @BindView(R.id.LpCalculatorTextPlayer2Lp)
     TextView tvPlayer2Lp;
     @BindView(R.id.LpCalculatorTextPlayer1Name)
-    TextView tvPlayer1Name;
+    EditText tvPlayer1Name;
     @BindView(R.id.LpCalculatorTextPlayer2Name)
-    TextView tvPlayer2Name;
+    EditText tvPlayer2Name;
     @BindView(R.id.LpCalculatorButtonTurn)
     Button btTurn;
     private OnFragmentInteractionListener mListener;
@@ -77,14 +80,15 @@ public class LpCalculator extends Fragment {
         View view = inflater.inflate(R.layout.fragment_lp_calculator, container, false);
         ButterKnife.bind(this, view);
         mLpCalculatorModel = new LpCalculatorModel();
+        initFromSettings(true);
+        initUIFromModel();
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        initFromSettings();
-        initUIFromModel();
+
     }
 
     private void initUIFromModel() {
@@ -93,7 +97,7 @@ public class LpCalculator extends Fragment {
         System.out.println(btTurn.getText().toString());
     }
 
-    private void initFromSettings() {
+    private void initFromSettings(boolean resetPlayerNames) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         mLpCalculatorModel.setLpDefault(Integer.parseInt(preferences.getString(getString(R.string.KEYdefaultLpSetting), "8000")));
         mLpCalculatorModel.setPlayer1Name(preferences.getString(getString(R.string.KEYplayerOneDefaultNameSetting), getString(R.string.playerOne)));
@@ -103,8 +107,12 @@ public class LpCalculator extends Fragment {
         mLpCalculatorModel.setAllowsNegativeLp(preferences.getBoolean(getString(R.string.KEYallowNegativeLp), false));
         tvPlayer1Lp.setText(Integer.toString(mLpCalculatorModel.getLpDefault()));
         tvPlayer2Lp.setText(Integer.toString(mLpCalculatorModel.getLpDefault()));
-        tvPlayer1Name.setText(mLpCalculatorModel.getPlayer1Name());
-        tvPlayer2Name.setText(mLpCalculatorModel.getPlayer2Name());
+        if(resetPlayerNames) {
+            mLpCalculatorModel.setPlayer1Name(preferences.getString(getString(R.string.KEYplayerOneDefaultNameSetting), getString(R.string.playerOne)));
+            mLpCalculatorModel.setPlayer2Name(preferences.getString(getString(R.string.KEYplayerTwoDefaultNameSetting), getString(R.string.playerTwo)));
+            tvPlayer1Name.setText(mLpCalculatorModel.getPlayer1Name());
+            tvPlayer2Name.setText(mLpCalculatorModel.getPlayer2Name());
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -145,6 +153,41 @@ public class LpCalculator extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+    public void setupTextChangedListerners(){
+        tvPlayer1Name.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                mLpCalculatorModel.setPlayer1Name(s.toString());
+            }
+        });
+        tvPlayer2Name.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                mLpCalculatorModel.setPlayer1Name(s.toString());
+            }
+        });
+    }
+
     private void clearEnteredValue(){
         if(mLpCalculatorModel.clearEnteredValue()){
             tvEnteredValue.setText("");
@@ -155,6 +198,8 @@ public class LpCalculator extends Fragment {
         //TODO: Animations!
         tvEnteredValue.setText(Integer.toString(mLpCalculatorModel.getEnteredValue()));
     }
+
+
 
     @OnClick({R.id.LpCalculatorButton0, R.id.LpCalculatorButton00, R.id.LpCalculatorButton000,
             R.id.LpCalculatorButton1, R.id.LpCalculatorButton2, R.id.LpCalculatorButton3,
@@ -232,6 +277,9 @@ public class LpCalculator extends Fragment {
         }
     }
 
-
-
+    @OnClick(R.id.LpCalculatorButtonReset)
+    public void onClickReset(){
+        initFromSettings(false);
+        initUIFromModel();
+    }
 }
