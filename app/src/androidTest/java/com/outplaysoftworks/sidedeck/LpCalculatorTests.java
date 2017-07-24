@@ -14,9 +14,11 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.longClick;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
@@ -220,5 +222,19 @@ public class LpCalculatorTests {
     public void onLongClickTurn_doNothingIfOnTurn1(){
         onView(withId(R.id.LpCalculatorButtonTurn)).perform(longClick());
         onView(withId(R.id.LpCalculatorButtonTurn)).check(matches(withText("Turn\n1")));
+    }
+
+    @Test
+    public void onClickBackWhenPlayer1NameFocused_unfocusesNameInsteadOfClosing(){
+        onView(withId(R.id.LpCalculatorTextPlayer1Name)).perform(click());
+        pressBack();
+        onView(withId(R.id.LpCalculatorTextEnteredValue)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void onClickBackWhenPlayer2NameFocused_unfocusesNameInsteadOfClosing(){
+        onView(withId(R.id.LpCalculatorTextPlayer2Name)).perform(click());
+        pressBack();
+        onView(withId(R.id.LpCalculatorTextEnteredValue)).check(matches(isDisplayed()));
     }
 }

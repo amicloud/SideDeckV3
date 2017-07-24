@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity implements LpCalculator.OnFragmentInteractionListener, LpLog.OnFragmentInteractionListener{
 
@@ -144,6 +145,19 @@ public class MainActivity extends AppCompatActivity implements LpCalculator.OnFr
 //                    return "SECTION 3";
             }
             return null;
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        EditText p1name = (EditText) findViewById(R.id.LpCalculatorTextPlayer1Name);
+        EditText p2name = (EditText) findViewById(R.id.LpCalculatorTextPlayer2Name);
+        if(p1name.hasFocus()){
+            p1name.clearFocus();
+        } else if (p2name.hasFocus()){
+            p2name.clearFocus();
+        } else {
+            super.onBackPressed();
         }
     }
 }
