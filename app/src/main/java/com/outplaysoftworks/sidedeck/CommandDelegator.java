@@ -9,4 +9,14 @@ import java.util.ArrayList;
 public class CommandDelegator {
     public static ArrayList<Command> commandHistory = new ArrayList<>();
 
+    public static boolean undoLastCommand(){
+        if(commandHistory.size() > 0) {
+            Command command = commandHistory.get(commandHistory.size() - 1);
+            command.unExecute();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

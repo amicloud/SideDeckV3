@@ -1,7 +1,5 @@
 package com.outplaysoftworks.sidedeck;
 
-import android.content.Context;
-
 /**
  * Created by Billy on 7/22/2017.
  */
@@ -14,10 +12,10 @@ public class LpCalculatorModel {
     private int player1Lp;
     private int player2Lp;
     private int mEnteredValue;
-    private Context mContext;
+    private int currentTurn;
 
-    public LpCalculatorModel(Context context) {
-        mContext = context;
+    LpCalculatorModel(){
+
     }
 
     int getEnteredValue() {
@@ -37,7 +35,7 @@ public class LpCalculatorModel {
     boolean appendToEnteredValue(String i) {
         String evString = Integer.toString(mEnteredValue);
         String appendedString = evString + i;
-        if (Integer.toString(mEnteredValue).length() < 6) {
+        if (appendedString.length() < 7) {
             setEnteredValue(Integer.parseInt(appendedString));
             return true;
         } else {
@@ -112,5 +110,33 @@ public class LpCalculatorModel {
 
     public void setPlayer2Lp(int player2Lp) {
         this.player2Lp = player2Lp;
+    }
+
+
+
+    public int getCurrentTurn() {
+        return currentTurn;
+    }
+
+    private void setCurrentTurn(int currentTurn) {
+        this.currentTurn = currentTurn;
+    }
+
+    public boolean incrementTurn(){
+        currentTurn++;
+        return true;
+    }
+
+    public boolean decrementTurn(){
+        if(currentTurn == 1){
+            return false;
+        } else {
+        currentTurn--;
+        return true;
+        }
+    }
+
+    public void resetTurns(){
+        setCurrentTurn(1);
     }
 }

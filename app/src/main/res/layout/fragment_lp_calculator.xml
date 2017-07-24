@@ -48,7 +48,7 @@
         android:layout_weight="3"
         android:orientation="horizontal">
 
-        <TextView
+        <EditText
             android:id="@+id/LpCalculatorTextPlayer1Name"
             style="@style/Text.PlayerName"
             android:layout_width="0dp"
@@ -68,7 +68,7 @@
             android:gravity="center"
             tools:text="999999"/>
 
-        <TextView
+        <EditText
             android:id="@+id/LpCalculatorTextPlayer2Name"
             style="@style/Text.PlayerName"
             android:layout_width="0dp"

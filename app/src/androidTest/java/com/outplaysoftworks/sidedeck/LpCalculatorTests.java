@@ -15,13 +15,14 @@ import org.junit.runner.RunWith;
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.longClick;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 @RunWith(AndroidJUnit4.class)
 //@LargeTest
-public class CalculatorModelTests {
+public class LpCalculatorTests {
 
     private String mStringToBetyped;
 
@@ -182,5 +183,42 @@ public class CalculatorModelTests {
         onView(withId(R.id.LpCalculatorTextPlayer2Lp)).check(matches(withText("7000")));
         onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
         onView(withId(R.id.LpCalculatorTextPlayer2Lp)).check(matches(withText("8000")));
+    }
+
+    @Test
+    public void onClickUndo_doesNothingIfNoCommandsInHistory(){
+        onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
+    }
+
+    @Test
+    public void onInit_setsUpTurnDisplay(){
+        onView(withId(R.id.LpCalculatorButtonTurn)).check(matches(withText("Turn\n1")));
+    }
+
+    @Test
+    public void onClickTurn_incrementsTurnDisplay(){
+        onView(withId(R.id.LpCalculatorButtonTurn)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonTurn)).check(matches(withText("Turn\n2")));
+        onView(withId(R.id.LpCalculatorButtonTurn)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonTurn)).check(matches(withText("Turn\n3")));
+    }
+
+    @Test
+    public void onLongClickTurn_decrementTurnDisplay(){
+        onView(withId(R.id.LpCalculatorButtonTurn)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonTurn)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonTurn)).perform(longClick());
+        onView(withId(R.id.LpCalculatorButtonTurn)).check(matches(withText("Turn\n2")));
+        onView(withId(R.id.LpCalculatorButtonTurn)).perform(longClick());
+        onView(withId(R.id.LpCalculatorButtonTurn)).check(matches(withText("Turn\n1")));
+    }
+
+    @Test
+    public void onLongClickTurn_doNothingIfOnTurn1(){
+        onView(withId(R.id.LpCalculatorButtonTurn)).perform(longClick());
+        onView(withId(R.id.LpCalculatorButtonTurn)).check(matches(withText("Turn\n1")));
     }
 }
