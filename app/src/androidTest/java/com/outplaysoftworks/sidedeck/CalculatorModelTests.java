@@ -85,4 +85,28 @@ public class CalculatorModelTests {
         String player2Name = sharedPreferences.getString(context.getString(R.string.KEYplayerTwoDefaultNameSetting), context.getString(R.string.playerTwo));
         onView(withId(R.id.LpCalculatorTextPlayer2Name)).check(matches(withText(player2Name)));
     }
+
+    @Test
+    public void onClickClearButton_clearEnteredValue(){
+        onView(withId(R.id.LpCalculatorButton1)).perform(click());
+        onView(withId(R.id.LpCalculatorButton2)).perform(click());
+        onView(withId(R.id.LpCalculatorButton3)).perform(click());
+        onView(withId(R.id.LpCalculatorButton4)).perform(click());
+        onView(withId(R.id.LpCalculatorButton5)).perform(click());
+        onView(withId(R.id.LpCalculatorButton6)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonClear)).perform(click());
+        onView(withId(R.id.LpCalculatorTextEnteredValue)).check(matches(withText("")));
+    }
+
+    @Test
+    public void onClickEnteredValue_clearEnteredValue(){
+        onView(withId(R.id.LpCalculatorButton1)).perform(click());
+        onView(withId(R.id.LpCalculatorButton2)).perform(click());
+        onView(withId(R.id.LpCalculatorButton3)).perform(click());
+        onView(withId(R.id.LpCalculatorButton4)).perform(click());
+        onView(withId(R.id.LpCalculatorButton5)).perform(click());
+        onView(withId(R.id.LpCalculatorButton6)).perform(click());
+        onView(withId(R.id.LpCalculatorTextEnteredValue)).perform(click());
+        onView(withId(R.id.LpCalculatorTextEnteredValue)).check(matches(withText("")));
+    }
 }

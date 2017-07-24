@@ -45,6 +45,11 @@ public class LpCalculatorModel {
         }
     }
 
+    boolean clearEnteredValue(){
+        setEnteredValue(0);
+        return true;
+    }
+
     public int getLpDefault() {
         return lpDefault;
     }

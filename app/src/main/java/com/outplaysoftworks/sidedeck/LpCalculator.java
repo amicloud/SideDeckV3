@@ -134,6 +134,17 @@ public class LpCalculator extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
+    private void clearEnteredValue(){
+        if(mLpCalculatorModel.clearEnteredValue()){
+            tvEnteredValue.setText("");
+        }
+    }
+
+    public void onEnteredValueUpdated(){
+        //TODO: Animations!
+        tvEnteredValue.setText(Integer.toString(mLpCalculatorModel.getEnteredValue()));
+    }
+
     @OnClick({R.id.LpCalculatorButton0, R.id.LpCalculatorButton00, R.id.LpCalculatorButton000,
             R.id.LpCalculatorButton1, R.id.LpCalculatorButton2, R.id.LpCalculatorButton3,
             R.id.LpCalculatorButton4, R.id.LpCalculatorButton5, R.id.LpCalculatorButton6,
@@ -145,9 +156,16 @@ public class LpCalculator extends Fragment {
         }
     }
 
-    public void onEnteredValueUpdated(){
-        //TODO: Animations!
-        tvEnteredValue.setText(Integer.toString(mLpCalculatorModel.getEnteredValue()));
+
+    @OnClick( R.id.LpCalculatorButtonClear)
+    public void onClickClear(View view){
+        clearEnteredValue();
     }
+
+    @OnClick(R.id.LpCalculatorTextEnteredValue)
+    public void onClickEnteredValue(View view){
+        clearEnteredValue();
+    }
+
 
 }

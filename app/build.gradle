@@ -1,9 +1,13 @@
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 25
     buildToolsVersion "26.0.0"
     defaultConfig {
+        jackOptions {
+            enabled true
+        }
         applicationId "com.outplaysoftworks.sidedeck"
         minSdkVersion 16
         targetSdkVersion 25
@@ -17,6 +21,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
     }
 }
 
@@ -39,5 +47,8 @@ dependencies {
     //Use Butterknife because databinding is a joke
     compile 'com.jakewharton:butterknife:8.7.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
+    //testCompile "org.robolectric:robolectric:3.3.2"
 
 }
+
+
