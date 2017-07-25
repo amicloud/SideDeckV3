@@ -19,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
+import me.grantland.widget.AutofitHelper;
 
 
 /**
@@ -84,9 +85,18 @@ public class LpCalculator extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        setupAutoFitTextViews();
         initFromSettings(true);
         initUIFromModel();
         setupTextChangedListerners();
+    }
+
+    private void setupAutoFitTextViews() {
+        AutofitHelper.create(tvPlayer1Lp);
+        AutofitHelper.create(tvPlayer2Lp);
+        AutofitHelper.create(tvPlayer1Name);
+        AutofitHelper.create(tvPlayer2Name);
+        AutofitHelper.create(tvEnteredValue);
     }
 
     private void initUIFromModel() {
