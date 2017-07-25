@@ -2,17 +2,19 @@ package com.outplaysoftworks.sidedeck;
 
 import android.widget.TextView;
 
+import static com.outplaysoftworks.sidedeck.AnimateTextView.animateTextView;
+
 /**
- * Created by Billy on 7/23/2017.
+ * Command to add LP to target player and animate textview
  */
 
-public class AddLpCommand implements Command {
+class AddLpCommand implements Command {
 
-    int target;
-    int amount;
-    TextView textView;
+    private int target;
+    private int amount;
+    private TextView textView;
 
-    public AddLpCommand(int target, int amount, TextView textView) {
+    AddLpCommand(int target, int amount, TextView textView) {
         this.target = target;
         this.amount = amount;
         this.textView = textView;
@@ -21,14 +23,19 @@ public class AddLpCommand implements Command {
     @Override
     public void execute() {
         CommandDelegator.commandHistory.add(this);
+        int prevLp;
         switch(target){
             case 1:
+                prevLp = LpCalculatorModel.getPlayer1Lp();
                 LpCalculatorModel.addLpToPlayer1(amount);
-                textView.setText(Integer.toString(LpCalculatorModel.getPlayer1Lp()));
+                animateTextView(prevLp, LpCalculatorModel.getPlayer1Lp(), textView, false);
+                //textView.setText(Integer.toString(LpCalculatorModel.getPlayer1Lp()));
                 return;
             case 2:
+                prevLp = LpCalculatorModel.getPlayer2Lp();
                 LpCalculatorModel.addLpToPlayer2(amount);
-                textView.setText(Integer.toString(LpCalculatorModel.getPlayer2Lp()));
+                animateTextView(prevLp, LpCalculatorModel.getPlayer2Lp(), textView, false);
+                //textView.setText(Integer.toString(LpCalculatorModel.getPlayer2Lp()));
                 return;
             default:
         }

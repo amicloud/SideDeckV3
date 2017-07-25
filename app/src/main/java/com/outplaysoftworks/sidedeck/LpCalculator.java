@@ -67,10 +67,7 @@ public class LpCalculator extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
     @Override
@@ -89,6 +86,7 @@ public class LpCalculator extends Fragment {
         super.onStart();
         initFromSettings(true);
         initUIFromModel();
+        setupTextChangedListerners();
     }
 
     private void initUIFromModel() {
@@ -149,7 +147,7 @@ public class LpCalculator extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }
 

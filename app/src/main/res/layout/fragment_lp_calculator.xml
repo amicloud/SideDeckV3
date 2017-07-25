@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:textView="com.outplaysoftworks.sidedeck.LpCalculator">
+    tools:textView="com.outplaysoftworks.sidedeck.LpCalculator"
+    tools:ignore="NestedWeights">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,7 +62,8 @@
             android:layout_weight="2"
             android:elevation="1dp"
             android:gravity="center"
-            tools:text="PLAYER NAME"/>
+            tools:text="PLAYER NAME"
+            tools:ignore="TextFields"/>
 
         <TextView
             android:id="@+id/LpCalculatorTextEnteredValue"
@@ -81,7 +83,8 @@
             android:layout_weight="2"
             android:elevation="1dp"
             android:gravity="center"
-            tools:text="PLAYER NAME"/>
+            tools:text="PLAYER NAME"
+            tools:ignore="TextFields"/>
 
     </LinearLayout>
 
@@ -163,7 +166,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="HardcodedText">
 
         <Button
             android:id="@+id/LpCalculatorButton7"
@@ -200,7 +204,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="HardcodedText">
 
         <Button
             android:id="@+id/LpCalculatorButton4"
@@ -237,7 +242,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="HardcodedText">
 
         <Button
             android:id="@+id/LpCalculatorButton1"
@@ -274,7 +280,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="HardcodedText">
 
         <Button
             android:id="@+id/LpCalculatorButton0"

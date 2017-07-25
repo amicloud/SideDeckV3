@@ -3,6 +3,7 @@ package com.outplaysoftworks.sidedeck;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -24,21 +25,17 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.not;
 
 @RunWith(AndroidJUnit4.class)
 //@LargeTest
 public class LpCalculatorTests {
+    private int durationSleepPadding = 250;
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
             MainActivity.class);
-    private String mStringToBetyped;
 
-    @Before
-    public void initValidString() {
-        // Specify a valid string.
-        mStringToBetyped = "Espresso";
-    }
 
     @SuppressLint("ApplySharedPref")
     @Before
@@ -148,6 +145,7 @@ public class LpCalculatorTests {
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
         onView(withId(R.id.LpCalculatorButtonPlusPlayer1)).perform(click());
+        SystemClock.sleep(AppConstants.LPCHANGEANIMATIONDURATION + durationSleepPadding);
         onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("9000")));
     }
 
@@ -157,6 +155,7 @@ public class LpCalculatorTests {
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
         onView(withId(R.id.LpCalculatorButtonPlusPlayer2)).perform(click());
+        SystemClock.sleep(AppConstants.LPCHANGEANIMATIONDURATION + durationSleepPadding);
         onView(withId(R.id.LpCalculatorTextPlayer2Lp)).check(matches(withText("9000")));
     }
 
@@ -166,6 +165,7 @@ public class LpCalculatorTests {
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
         onView(withId(R.id.LpCalculatorButtonMinusPlayer1)).perform(click());
+        SystemClock.sleep(AppConstants.LPCHANGEANIMATIONDURATION + durationSleepPadding);
         onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("7000")));
     }
 
@@ -175,6 +175,7 @@ public class LpCalculatorTests {
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
         onView(withId(R.id.LpCalculatorButtonMinusPlayer2)).perform(click());
+        SystemClock.sleep(AppConstants.LPCHANGEANIMATIONDURATION + durationSleepPadding);
         onView(withId(R.id.LpCalculatorTextPlayer2Lp)).check(matches(withText("7000")));
     }
 
@@ -184,6 +185,7 @@ public class LpCalculatorTests {
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
         onView(withId(R.id.LpCalculatorButtonPlusPlayer1)).perform(click());
+        SystemClock.sleep(AppConstants.LPCHANGEANIMATIONDURATION + durationSleepPadding);
         onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("9000")));
         onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
         onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("8000")));
@@ -195,6 +197,7 @@ public class LpCalculatorTests {
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
         onView(withId(R.id.LpCalculatorButtonMinusPlayer2)).perform(click());
+        SystemClock.sleep(AppConstants.LPCHANGEANIMATIONDURATION + durationSleepPadding);
         onView(withId(R.id.LpCalculatorTextPlayer2Lp)).check(matches(withText("7000")));
         onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
         onView(withId(R.id.LpCalculatorTextPlayer2Lp)).check(matches(withText("8000")));
@@ -286,6 +289,7 @@ public class LpCalculatorTests {
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
         onView(withId(R.id.LpCalculatorButton0)).perform(click());
         onView(withId(R.id.LpCalculatorButtonMinusPlayer1)).perform(click());
+        SystemClock.sleep(AppConstants.LPCHANGEANIMATIONDURATIONLONG + durationSleepPadding);
         onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("0")));
     }
 
@@ -296,6 +300,37 @@ public class LpCalculatorTests {
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
         onView(withId(R.id.LpCalculatorButton0)).perform(click());
         onView(withId(R.id.LpCalculatorButtonMinusPlayer1)).perform(click());
+        SystemClock.sleep(AppConstants.LPCHANGEANIMATIONDURATION + durationSleepPadding);
         onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("-22000")));
+    }
+
+    @Test
+    public void animatesTextViewOnClickPlus(){
+        onView(withId(R.id.LpCalculatorButton3)).perform(click());
+        onView(withId(R.id.LpCalculatorButton000)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonPlusPlayer1)).perform(click());
+        onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(not(withText("11000"))));
+        SystemClock.sleep(AppConstants.LPCHANGEANIMATIONDURATION + durationSleepPadding);
+        onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("11000")));
+    }
+
+    @Test
+    public void animatesTextViewOnClickMinus(){
+        onView(withId(R.id.LpCalculatorButton3)).perform(click());
+        onView(withId(R.id.LpCalculatorButton000)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonMinusPlayer1)).perform(click());
+        onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(not(withText("5000"))));
+        SystemClock.sleep(AppConstants.LPCHANGEANIMATIONDURATION + durationSleepPadding);
+        onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("5000")));
+    }
+
+    @Test
+    public void doesNotAnimateTextViewOnUndo(){
+        onView(withId(R.id.LpCalculatorButton3)).perform(click());
+        onView(withId(R.id.LpCalculatorButton000)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonMinusPlayer1)).perform(click());
+        SystemClock.sleep(AppConstants.LPCHANGEANIMATIONDURATION + durationSleepPadding);
+        onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
+        onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("8000")));
     }
 }

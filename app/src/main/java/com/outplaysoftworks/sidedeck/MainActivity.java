@@ -14,7 +14,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity implements LpCalculator.OnFragmentInteractionListener, LpLog.OnFragmentInteractionListener{
@@ -27,18 +26,14 @@ public class MainActivity extends AppCompatActivity implements LpCalculator.OnFr
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
+    @SuppressWarnings("FieldCanBeLocal")
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
      */
+    @SuppressWarnings("FieldCanBeLocal")
     private ViewPager mViewPager;
-
-    private static LpCalculator mLpCalculator;
-
-    public static LpCalculator getLpCalculator(){
-        return mLpCalculator;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +54,8 @@ public class MainActivity extends AppCompatActivity implements LpCalculator.OnFr
         tabLayout.setupWithViewPager(mViewPager);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
 
     }
 
@@ -116,11 +106,9 @@ public class MainActivity extends AppCompatActivity implements LpCalculator.OnFr
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
                 case 0:
-                    mLpCalculator = LpCalculator.newInstance();
-                    return mLpCalculator;
+                    return LpCalculator.newInstance();
                 case 1:
                     return LpLog.newInstance();
                 default:

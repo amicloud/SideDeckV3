@@ -51,6 +51,10 @@ dependencies {
     //Use Butterknife because databinding is a joke
     compile 'com.jakewharton:butterknife:8.7.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
+
+    //AutoFitTextView by Grantland
+    compile 'me.grantland:autofittextview:0.2.+'
+
     //testCompile "org.robolectric:robolectric:3.3.2"
 
 }

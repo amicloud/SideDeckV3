@@ -2,17 +2,15 @@ package com.outplaysoftworks.sidedeck;
 
 import android.widget.TextView;
 
-/**
- * Created by Billy on 7/23/2017.
- */
+import static com.outplaysoftworks.sidedeck.AnimateTextView.animateTextView;
 
-public class SubtractLpCommand implements Command {
+class SubtractLpCommand implements Command {
 
-    int target;
-    int amount;
-    TextView textView;
+    private int target;
+    private int amount;
+    private TextView textView;
 
-    public SubtractLpCommand(int target, int amount, TextView textView) {
+    SubtractLpCommand(int target, int amount, TextView textView) {
         this.target = target;
         this.amount = amount;
         this.textView = textView;
@@ -29,25 +27,25 @@ public class SubtractLpCommand implements Command {
                     if(!LpCalculatorModel.getAllowsNegativeLp()){
                         amount = LpCalculatorModel.getPlayer1Lp();
                         LpCalculatorModel.subtractLpFromPlayer1(amount);
-                        textView.setText(Integer.toString(LpCalculatorModel.getPlayer1Lp()));
+                        animateTextView(prevLp, LpCalculatorModel.getPlayer1Lp(), textView, true);
                         return;
                     }
                 }
                 LpCalculatorModel.subtractLpFromPlayer1(amount);
-                textView.setText(Integer.toString(LpCalculatorModel.getPlayer1Lp()));
+                animateTextView(prevLp, LpCalculatorModel.getPlayer1Lp(), textView, false);
                 return;
             case 2:
-                prevLp = LpCalculatorModel.getPlayer1Lp();
+                prevLp = LpCalculatorModel.getPlayer2Lp();
                 if(prevLp - amount < 0){
                     if(!LpCalculatorModel.getAllowsNegativeLp()){
                         amount = LpCalculatorModel.getPlayer2Lp();
                         LpCalculatorModel.subtractLpFromPlayer2(amount);
-                        textView.setText(Integer.toString(LpCalculatorModel.getPlayer2Lp()));
+                        animateTextView(prevLp, LpCalculatorModel.getPlayer2Lp(), textView, false);
                         return;
                     }
                 }
                 LpCalculatorModel.subtractLpFromPlayer2(amount);
-                textView.setText(Integer.toString(LpCalculatorModel.getPlayer2Lp()));
+                animateTextView(prevLp, LpCalculatorModel.getPlayer2Lp(), textView, false);
                 return;
             default:
         }

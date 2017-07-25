@@ -32,7 +32,7 @@
     <string name="stop">PARAR</string>
     <string name="fiveMinutesRemaining">Cinco minutos restantes</string>
     <string name="cancel">Cancelar</string>
-    <string name="possibleAccidentalEntry">Possivel introdução acidental</string>
+    <string name="possibleAccidentalEntry">Possível introdução acidental</string>
     <string name="theEnteredNumber">"O número introduzido "</string>
     <string name="seemsTooLarge">" parece muito grande. Tens a certeza que isto está correto?"</string>
 
@@ -43,7 +43,7 @@
     <string name="rateMe">Classifica-me?</string>
     <string name="rateMeMessage">Importaria-se de classificar o SideDeck na Google Play Store ?</string>
 
-    <string name="checkForSafeEntrySummary">Se o numero introduzido não parecer correcto, pede confirmação. Previne adicionar 100,000 LP acidentalmente</string>
+    <string name="checkForSafeEntrySummary">Se o número introduzido não parecer correcto, pede confirmação. Previne adicionar 100,000 LP acidentalmente</string>
     <string name="checkForSafeEntryTitle">Verificar se o Número Introduzido é Seguro</string>
     <string name="stopAtZeroSummary">Permitir que os Pontos de Vida fiquem negativos</string>
     <string name="stopAtZeroTitle">Permitir Pontos de Vida Negativos</string>
