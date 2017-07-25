@@ -30,7 +30,7 @@ import butterknife.OnLongClick;
  * create an instance of this fragment.
  */
 public class LpCalculator extends Fragment {
-    LpCalculatorModel mLpCalculatorModel;
+//    LpCalculatorModel mLpCalculatorModel;
     //Butterknife Viewbindings
     @BindView(R.id.LpCalculatorTextEnteredValue)
     TextView tvEnteredValue;
@@ -79,39 +79,39 @@ public class LpCalculator extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_lp_calculator, container, false);
         ButterKnife.bind(this, view);
-        mLpCalculatorModel = new LpCalculatorModel();
-        initFromSettings(true);
-        initUIFromModel();
+        //mLpCalculatorModel = new LpCalculatorModel();
+
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-
+        initFromSettings(true);
+        initUIFromModel();
     }
 
     private void initUIFromModel() {
-        mLpCalculatorModel.resetTurns();
-        btTurn.setText(getString(R.string.turn) + Integer.toString(mLpCalculatorModel.getCurrentTurn()));
+        LpCalculatorModel.resetTurns();
+        btTurn.setText(getString(R.string.turn) + Integer.toString(LpCalculatorModel.getCurrentTurn()));
         System.out.println(btTurn.getText().toString());
     }
 
     private void initFromSettings(boolean resetPlayerNames) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        mLpCalculatorModel.setLpDefault(Integer.parseInt(preferences.getString(getString(R.string.KEYdefaultLpSetting), "8000")));
-        mLpCalculatorModel.setPlayer1Name(preferences.getString(getString(R.string.KEYplayerOneDefaultNameSetting), getString(R.string.playerOne)));
-        mLpCalculatorModel.setPlayer2Name(preferences.getString(getString(R.string.KEYplayerTwoDefaultNameSetting), getString(R.string.playerTwo)));
-        mLpCalculatorModel.setPlayer1Lp(mLpCalculatorModel.getLpDefault());
-        mLpCalculatorModel.setPlayer2Lp(mLpCalculatorModel.getLpDefault());
-        mLpCalculatorModel.setAllowsNegativeLp(preferences.getBoolean(getString(R.string.KEYallowNegativeLp), false));
-        tvPlayer1Lp.setText(Integer.toString(mLpCalculatorModel.getLpDefault()));
-        tvPlayer2Lp.setText(Integer.toString(mLpCalculatorModel.getLpDefault()));
+        LpCalculatorModel.setLpDefault(Integer.parseInt(preferences.getString(getString(R.string.KEYdefaultLpSetting), "8000")));
+        LpCalculatorModel.setPlayer1Name(preferences.getString(getString(R.string.KEYplayerOneDefaultNameSetting), getString(R.string.playerOne)));
+        LpCalculatorModel.setPlayer2Name(preferences.getString(getString(R.string.KEYplayerTwoDefaultNameSetting), getString(R.string.playerTwo)));
+        LpCalculatorModel.setPlayer1Lp(LpCalculatorModel.getLpDefault());
+        LpCalculatorModel.setPlayer2Lp(LpCalculatorModel.getLpDefault());
+        LpCalculatorModel.setAllowsNegativeLp(preferences.getBoolean(getString(R.string.KEYallowNegativeLp), false));
+        tvPlayer1Lp.setText(Integer.toString(LpCalculatorModel.getLpDefault()));
+        tvPlayer2Lp.setText(Integer.toString(LpCalculatorModel.getLpDefault()));
         if(resetPlayerNames) {
-            mLpCalculatorModel.setPlayer1Name(preferences.getString(getString(R.string.KEYplayerOneDefaultNameSetting), getString(R.string.playerOne)));
-            mLpCalculatorModel.setPlayer2Name(preferences.getString(getString(R.string.KEYplayerTwoDefaultNameSetting), getString(R.string.playerTwo)));
-            tvPlayer1Name.setText(mLpCalculatorModel.getPlayer1Name());
-            tvPlayer2Name.setText(mLpCalculatorModel.getPlayer2Name());
+            LpCalculatorModel.setPlayer1Name(preferences.getString(getString(R.string.KEYplayerOneDefaultNameSetting), getString(R.string.playerOne)));
+            LpCalculatorModel.setPlayer2Name(preferences.getString(getString(R.string.KEYplayerTwoDefaultNameSetting), getString(R.string.playerTwo)));
+            tvPlayer1Name.setText(LpCalculatorModel.getPlayer1Name());
+            tvPlayer2Name.setText(LpCalculatorModel.getPlayer2Name());
         }
     }
 
@@ -167,7 +167,7 @@ public class LpCalculator extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                mLpCalculatorModel.setPlayer1Name(s.toString());
+                LpCalculatorModel.setPlayer1Name(s.toString());
             }
         });
         tvPlayer2Name.addTextChangedListener(new TextWatcher() {
@@ -183,20 +183,20 @@ public class LpCalculator extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                mLpCalculatorModel.setPlayer1Name(s.toString());
+                LpCalculatorModel.setPlayer1Name(s.toString());
             }
         });
     }
 
     private void clearEnteredValue(){
-        if(mLpCalculatorModel.clearEnteredValue()){
+        if(LpCalculatorModel.clearEnteredValue()){
             tvEnteredValue.setText("");
         }
     }
 
     public void onEnteredValueUpdated(){
         //TODO: Animations!
-        tvEnteredValue.setText(Integer.toString(mLpCalculatorModel.getEnteredValue()));
+        tvEnteredValue.setText(Integer.toString(LpCalculatorModel.getEnteredValue()));
     }
 
 
@@ -207,7 +207,7 @@ public class LpCalculator extends Fragment {
             R.id.LpCalculatorButton7, R.id.LpCalculatorButton8, R.id.LpCalculatorButton9})
     public void onClickCalculatorNumber(View view){
         String amount = view.getTag().toString();
-        if(mLpCalculatorModel.appendToEnteredValue(amount)){
+        if(LpCalculatorModel.appendToEnteredValue(amount)){
             onEnteredValueUpdated();
         }
     }
@@ -226,7 +226,7 @@ public class LpCalculator extends Fragment {
     @OnClick(R.id.LpCalculatorButtonPlusPlayer1)
     public void onClickPlusPlayer1(View view){
         if(tvEnteredValue.getText().equals("")) return;
-        AddLpCommand command = new AddLpCommand(1, mLpCalculatorModel.getEnteredValue(), mLpCalculatorModel, tvPlayer1Lp);
+        AddLpCommand command = new AddLpCommand(1, LpCalculatorModel.getEnteredValue(), tvPlayer1Lp);
         command.execute();
         clearEnteredValue();
     }
@@ -234,7 +234,7 @@ public class LpCalculator extends Fragment {
     @OnClick(R.id.LpCalculatorButtonMinusPlayer1)
     public void onClickMinusPlayer1(View view){
         if(tvEnteredValue.getText().equals("")) return;
-        SubtractLpCommand command = new SubtractLpCommand(1, mLpCalculatorModel.getEnteredValue(), mLpCalculatorModel, tvPlayer1Lp);
+        SubtractLpCommand command = new SubtractLpCommand(1, LpCalculatorModel.getEnteredValue(), tvPlayer1Lp);
         command.execute();
         clearEnteredValue();
     }
@@ -242,7 +242,7 @@ public class LpCalculator extends Fragment {
     @OnClick(R.id.LpCalculatorButtonPlusPlayer2)
     public void onClickPlusPlayer2(View view){
         if(tvEnteredValue.getText().equals("")) return;
-        AddLpCommand command = new AddLpCommand(2, mLpCalculatorModel.getEnteredValue(), mLpCalculatorModel, tvPlayer2Lp);
+        AddLpCommand command = new AddLpCommand(2, LpCalculatorModel.getEnteredValue(), tvPlayer2Lp);
         command.execute();
         clearEnteredValue();
     }
@@ -250,7 +250,7 @@ public class LpCalculator extends Fragment {
     @OnClick(R.id.LpCalculatorButtonMinusPlayer2)
     public void onClickMinusPlayer2(View view){
         if(tvEnteredValue.getText().equals("")) return;
-        SubtractLpCommand command = new SubtractLpCommand(2, mLpCalculatorModel.getEnteredValue(), mLpCalculatorModel, tvPlayer2Lp);
+        SubtractLpCommand command = new SubtractLpCommand(2, LpCalculatorModel.getEnteredValue(), tvPlayer2Lp);
         command.execute();
         clearEnteredValue();
     }
@@ -262,15 +262,15 @@ public class LpCalculator extends Fragment {
 
     @OnClick(R.id.LpCalculatorButtonTurn)
     public void onClickTurn(){
-        if(mLpCalculatorModel.incrementTurn()){
-            btTurn.setText(getString(R.string.turn) + Integer.toString(mLpCalculatorModel.getCurrentTurn()));
+        if(LpCalculatorModel.incrementTurn()){
+            btTurn.setText(getString(R.string.turn) + Integer.toString(LpCalculatorModel.getCurrentTurn()));
         }
     }
 
     @OnLongClick(R.id.LpCalculatorButtonTurn)
     public boolean onLongClickTurn(){
-        if(mLpCalculatorModel.decrementTurn()){
-            btTurn.setText(getString(R.string.turn) + Integer.toString(mLpCalculatorModel.getCurrentTurn()));
+        if(LpCalculatorModel.decrementTurn()){
+            btTurn.setText(getString(R.string.turn) + Integer.toString(LpCalculatorModel.getCurrentTurn()));
             return true;
         } else{
             return true;
@@ -281,5 +281,6 @@ public class LpCalculator extends Fragment {
     public void onClickReset(){
         initFromSettings(false);
         initUIFromModel();
+        CommandDelegator.reset();
     }
 }

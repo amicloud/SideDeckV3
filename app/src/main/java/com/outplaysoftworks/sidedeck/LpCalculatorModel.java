@@ -5,23 +5,23 @@ package com.outplaysoftworks.sidedeck;
  */
 
 public class LpCalculatorModel {
-    private String player1Name;
-    private String player2Name;
-    private boolean allowsNegativeLp;
-    private int lpDefault;
-    private int player1Lp;
-    private int player2Lp;
-    private int mEnteredValue;
-    private int currentTurn;
+    static private String player1Name;
+    static private String player2Name;
+    static private boolean allowsNegativeLp;
+    static private int lpDefault;
+    static private int player1Lp;
+    static private int player2Lp;
+    static private int mEnteredValue;
+    static private int currentTurn;
 
     LpCalculatorModel(){
 
     }
 
-    int getEnteredValue() {
+    static int getEnteredValue() {
         return mEnteredValue;
     }
-    private void setEnteredValue(int enteredValue) {
+    private static void setEnteredValue(int enteredValue) {
         mEnteredValue = enteredValue;
     }
 
@@ -32,7 +32,7 @@ public class LpCalculatorModel {
      * @param i Integer to append to entered value
      * @return Returns true if successful, returns false otherwise.
      */
-    boolean appendToEnteredValue(String i) {
+    static boolean appendToEnteredValue(String i) {
         String evString = Integer.toString(mEnteredValue);
         String appendedString = evString + i;
         if (appendedString.length() < 7) {
@@ -43,107 +43,91 @@ public class LpCalculatorModel {
         }
     }
 
-    boolean clearEnteredValue(){
+    static boolean clearEnteredValue(){
         setEnteredValue(0);
         return true;
     }
 
-    public int getLpDefault() {
+    static int getLpDefault() {
         return lpDefault;
     }
 
-    public void setLpDefault(int lpDefault) {
-        this.lpDefault = lpDefault;
+    static void setLpDefault(int zlpDefault) {
+        lpDefault = zlpDefault;
     }
 
-    public String getPlayer1Name() {
+    static String getPlayer1Name() {
         return player1Name;
     }
 
-    public void setPlayer1Name(String player1Name) {
-        this.player1Name = player1Name;
+    static void setPlayer1Name(String zplayer1Name) {
+        player1Name = zplayer1Name;
     }
 
-    public String getPlayer2Name() {
+    static String getPlayer2Name() {
         return player2Name;
     }
 
-    public void setPlayer2Name(String player2Name) {
-        this.player2Name = player2Name;
+    static void setPlayer2Name(String zplayer2Name) {
+        player2Name = zplayer2Name;
     }
 
-    public boolean isAllowsNegativeLp() {
+    static boolean getAllowsNegativeLp() {
         return allowsNegativeLp;
     }
 
-    public void setAllowsNegativeLp(boolean allowsNegativeLp) {
-        this.allowsNegativeLp = allowsNegativeLp;
+    static void setAllowsNegativeLp(boolean zallowsNegativeLp) {
+        allowsNegativeLp = zallowsNegativeLp;
     }
 
-    public void addLpToPlayer1(int amount) {
+    static void addLpToPlayer1(int amount) {
         player1Lp += amount;
     }
 
-    public void addLpToPlayer2(int amount) {
+    static void addLpToPlayer2(int amount) {
         player2Lp += amount;
     }
 
-    public void subtractLpFromPlayer1(int amount){
-        if(player1Lp - amount < 0){
-            if(allowsNegativeLp){
-                player1Lp -= amount;
-            } else {
-                player1Lp = 0;
-            }
-        } else {
+    static void subtractLpFromPlayer1(int amount){
         player1Lp -= amount;
-        }
     }
 
-    public void subtractLpFromPlayer2(int amount){
-        if(player2Lp - amount < 0){
-            if(allowsNegativeLp){
-                player2Lp -= amount;
-            } else {
-                player2Lp = 0;
-            }
-        } else {
-            player2Lp -= amount;
-        }
+    static void subtractLpFromPlayer2(int amount){
+        player2Lp -= amount;
     }
 
-    public int getPlayer1Lp() {
+    static int getPlayer1Lp() {
         return player1Lp;
     }
 
-    public void setPlayer1Lp(int player1Lp) {
-        this.player1Lp = player1Lp;
+    static void setPlayer1Lp(int zplayer1Lp) {
+        player1Lp = zplayer1Lp;
     }
 
-    public int getPlayer2Lp() {
+    static int getPlayer2Lp() {
         return player2Lp;
     }
 
-    public void setPlayer2Lp(int player2Lp) {
-        this.player2Lp = player2Lp;
+    static void setPlayer2Lp(int zplayer2Lp) {
+        player2Lp = zplayer2Lp;
     }
 
 
 
-    public int getCurrentTurn() {
+    static int getCurrentTurn() {
         return currentTurn;
     }
 
-    private void setCurrentTurn(int currentTurn) {
-        this.currentTurn = currentTurn;
+    private static void setCurrentTurn(int zcurrentTurn) {
+        currentTurn = zcurrentTurn;
     }
 
-    public boolean incrementTurn(){
+    static boolean incrementTurn(){
         currentTurn++;
         return true;
     }
 
-    public boolean decrementTurn(){
+    static boolean decrementTurn(){
         if(currentTurn == 1){
             return false;
         } else {
@@ -152,7 +136,7 @@ public class LpCalculatorModel {
         }
     }
 
-    public void resetTurns(){
+    static void resetTurns(){
         setCurrentTurn(1);
     }
 }

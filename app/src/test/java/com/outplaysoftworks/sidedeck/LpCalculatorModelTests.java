@@ -85,9 +85,9 @@ public class LpCalculatorModelTests {
     @Test
     public void setsAndGetsIsAllowsNegativeLp(){
         model.setAllowsNegativeLp(false);
-        assertEquals(false, model.isAllowsNegativeLp());
+        assertEquals(false, model.getAllowsNegativeLp());
         model.setAllowsNegativeLp(true);
-        assertEquals(true, model.isAllowsNegativeLp());
+        assertEquals(true, model.getAllowsNegativeLp());
     }
 
     @Test

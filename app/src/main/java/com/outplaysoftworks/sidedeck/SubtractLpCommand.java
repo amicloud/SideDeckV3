@@ -10,27 +10,44 @@ public class SubtractLpCommand implements Command {
 
     int target;
     int amount;
-    LpCalculatorModel model;
     TextView textView;
 
-    public SubtractLpCommand(int target, int amount, LpCalculatorModel model, TextView textView) {
+    public SubtractLpCommand(int target, int amount, TextView textView) {
         this.target = target;
         this.amount = amount;
-        this.model = model;
         this.textView = textView;
     }
 
     @Override
     public void execute() {
         CommandDelegator.commandHistory.add(this);
+        int prevLp;
         switch(target){
             case 1:
-                model.subtractLpFromPlayer1(amount);
-                textView.setText(Integer.toString(model.getPlayer1Lp()));
+                prevLp = LpCalculatorModel.getPlayer1Lp();
+                if(prevLp - amount < 0){
+                    if(!LpCalculatorModel.getAllowsNegativeLp()){
+                        amount = LpCalculatorModel.getPlayer1Lp();
+                        LpCalculatorModel.subtractLpFromPlayer1(amount);
+                        textView.setText(Integer.toString(LpCalculatorModel.getPlayer1Lp()));
+                        return;
+                    }
+                }
+                LpCalculatorModel.subtractLpFromPlayer1(amount);
+                textView.setText(Integer.toString(LpCalculatorModel.getPlayer1Lp()));
                 return;
             case 2:
-                model.subtractLpFromPlayer2(amount);
-                textView.setText(Integer.toString(model.getPlayer2Lp()));
+                prevLp = LpCalculatorModel.getPlayer1Lp();
+                if(prevLp - amount < 0){
+                    if(!LpCalculatorModel.getAllowsNegativeLp()){
+                        amount = LpCalculatorModel.getPlayer2Lp();
+                        LpCalculatorModel.subtractLpFromPlayer2(amount);
+                        textView.setText(Integer.toString(LpCalculatorModel.getPlayer2Lp()));
+                        return;
+                    }
+                }
+                LpCalculatorModel.subtractLpFromPlayer2(amount);
+                textView.setText(Integer.toString(LpCalculatorModel.getPlayer2Lp()));
                 return;
             default:
         }
@@ -41,12 +58,12 @@ public class SubtractLpCommand implements Command {
         CommandDelegator.commandHistory.remove(this);
         switch(target){
             case 1:
-                model.addLpToPlayer1(amount);
-                textView.setText(Integer.toString(model.getPlayer1Lp()));
+                LpCalculatorModel.addLpToPlayer1(amount);
+                textView.setText(Integer.toString(LpCalculatorModel.getPlayer1Lp()));
                 return;
             case 2:
-                model.addLpToPlayer2(amount);
-                textView.setText(Integer.toString(model.getPlayer2Lp()));
+                LpCalculatorModel.addLpToPlayer2(amount);
+                textView.setText(Integer.toString(LpCalculatorModel.getPlayer2Lp()));
                 return;
             default:
         }

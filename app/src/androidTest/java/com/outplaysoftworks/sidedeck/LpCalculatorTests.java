@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -28,11 +29,10 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 //@LargeTest
 public class LpCalculatorTests {
 
-    private String mStringToBetyped;
-
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(
             MainActivity.class);
+    private String mStringToBetyped;
 
     @Before
     public void initValidString() {
@@ -42,7 +42,7 @@ public class LpCalculatorTests {
 
     @SuppressLint("ApplySharedPref")
     @Before
-    public void initSettingsForTesting(){
+    public void initSettingsForTesting() {
         Context context = getInstrumentation().getTargetContext();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -51,6 +51,16 @@ public class LpCalculatorTests {
         editor.putString(context.getString(R.string.KEYplayerTwoDefaultNameSetting), "Player 2");
         editor.putString(context.getString(R.string.KEYdefaultLpSetting), "8000");
         editor.commit();
+    }
+
+    @After
+    public void cleanUpModel(){
+        LpCalculatorModel.clearEnteredValue();
+        LpCalculatorModel.setPlayer1Name(LpCalculatorModel.getPlayer1Name());
+        LpCalculatorModel.setPlayer1Lp(LpCalculatorModel.getPlayer1Lp());
+        LpCalculatorModel.setPlayer2Lp(LpCalculatorModel.getPlayer2Lp());
+        LpCalculatorModel.setAllowsNegativeLp(false);
+        LpCalculatorModel.setLpDefault(8000);
     }
 
     @Test
@@ -65,7 +75,7 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void doesNotAddToEnteredValueIfAtSixDigits(){
+    public void doesNotAddToEnteredValueIfAtSixDigits() {
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton2)).perform(click());
         onView(withId(R.id.LpCalculatorButton3)).perform(click());
@@ -77,7 +87,7 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void setsDefaultLpFromSettings(){
+    public void setsDefaultLpFromSettings() {
         Context context = getInstrumentation().getTargetContext();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         int defaultLp = Integer.parseInt(sharedPreferences.getString(context.getString(R.string.KEYdefaultLpSetting), "8000"));
@@ -85,7 +95,7 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void setsPlayerNamesFromSettings(){
+    public void setsPlayerNamesFromSettings() {
         Context context = getInstrumentation().getTargetContext();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String player1Name = sharedPreferences.getString(context.getString(R.string.KEYplayerOneDefaultNameSetting), context.getString(R.string.playerOne));
@@ -95,7 +105,7 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void onClickClearButton_clearEnteredValue(){
+    public void onClickClearButton_clearEnteredValue() {
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton2)).perform(click());
         onView(withId(R.id.LpCalculatorButton3)).perform(click());
@@ -107,7 +117,7 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void onClickEnteredValue_clearEnteredValue(){
+    public void onClickEnteredValue_clearEnteredValue() {
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton2)).perform(click());
         onView(withId(R.id.LpCalculatorButton3)).perform(click());
@@ -119,21 +129,21 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void onClickDoubleZero_appendsDoubleZero(){
+    public void onClickDoubleZero_appendsDoubleZero() {
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton00)).perform(click());
         onView(withId(R.id.LpCalculatorTextEnteredValue)).check(matches(withText("100")));
     }
 
     @Test
-    public void onClickTripleZero_appendsTripleZero(){
+    public void onClickTripleZero_appendsTripleZero() {
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
         onView(withId(R.id.LpCalculatorTextEnteredValue)).check(matches(withText("1000")));
     }
 
     @Test
-    public void onClickPlusP1_addsToP1Lp(){
+    public void onClickPlusP1_addsToP1Lp() {
         //Add 1000 to entered value
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
@@ -142,7 +152,7 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void onClickPlusP2_addsToP2Lp(){
+    public void onClickPlusP2_addsToP2Lp() {
         //Add 1000 to entered value
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
@@ -151,7 +161,7 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void onClickMinusP1_subtractsFromP1Lp(){
+    public void onClickMinusP1_subtractsFromP1Lp() {
         //Add 1000 to entered value
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
@@ -160,7 +170,7 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void onClickMinusP2_subtractsFromP2Lp(){
+    public void onClickMinusP2_subtractsFromP2Lp() {
         //Add 1000 to entered value
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
@@ -169,7 +179,7 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void onClickUndo_unexecutesLastAddition(){
+    public void onClickUndo_unexecutesLastAddition() {
         //Add 1000 to entered value
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
@@ -180,7 +190,7 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void onClickUndo_unexecutesLastSubtraction(){
+    public void onClickUndo_unexecutesLastSubtraction() {
         //Add 1000 to entered value
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
@@ -191,7 +201,7 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void onClickUndo_doesNothingIfNoCommandsInHistory(){
+    public void onClickUndo_doesNothingIfNoCommandsInHistory() {
         onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
         onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
         onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
@@ -199,12 +209,12 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void onInit_setsUpTurnDisplay(){
+    public void onInit_setsUpTurnDisplay() {
         onView(withId(R.id.LpCalculatorButtonTurn)).check(matches(withText("Turn\n1")));
     }
 
     @Test
-    public void onClickTurn_incrementsTurnDisplay(){
+    public void onClickTurn_incrementsTurnDisplay() {
         onView(withId(R.id.LpCalculatorButtonTurn)).perform(click());
         onView(withId(R.id.LpCalculatorButtonTurn)).check(matches(withText("Turn\n2")));
         onView(withId(R.id.LpCalculatorButtonTurn)).perform(click());
@@ -212,7 +222,7 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void onLongClickTurn_decrementTurnDisplay(){
+    public void onLongClickTurn_decrementTurnDisplay() {
         onView(withId(R.id.LpCalculatorButtonTurn)).perform(click());
         onView(withId(R.id.LpCalculatorButtonTurn)).perform(click());
         onView(withId(R.id.LpCalculatorButtonTurn)).perform(longClick());
@@ -222,27 +232,27 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void onLongClickTurn_doNothingIfOnTurn1(){
+    public void onLongClickTurn_doNothingIfOnTurn1() {
         onView(withId(R.id.LpCalculatorButtonTurn)).perform(longClick());
         onView(withId(R.id.LpCalculatorButtonTurn)).check(matches(withText("Turn\n1")));
     }
 
     @Test
-    public void onClickBackWhenPlayer1NameFocused_unfocusesNameInsteadOfClosing(){
+    public void onClickBackWhenPlayer1NameFocused_unfocusesNameInsteadOfClosing() {
         onView(withId(R.id.LpCalculatorTextPlayer1Name)).perform(click());
         pressBack();
         onView(withId(R.id.LpCalculatorTextEnteredValue)).check(matches(isDisplayed()));
     }
 
     @Test
-    public void onClickBackWhenPlayer2NameFocused_unfocusesNameInsteadOfClosing(){
+    public void onClickBackWhenPlayer2NameFocused_unfocusesNameInsteadOfClosing() {
         onView(withId(R.id.LpCalculatorTextPlayer2Name)).perform(click());
         pressBack();
         onView(withId(R.id.LpCalculatorTextEnteredValue)).check(matches(isDisplayed()));
     }
 
     @Test
-    public void onClickReset_resetsToInitialSettingsKeepingPlayerNames(){
+    public void onClickReset_resetsToInitialSettingsKeepingPlayerNames() {
         //Mess everyting up
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton2)).perform(click());
@@ -270,13 +280,8 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void onClickSubtract_goesToZeroIfWillMakeNegativeAndAllowNegativeLpIsDisabled(){
-        Context context = getInstrumentation().getTargetContext();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(context.getString(R.string.KEYallowNegativeLp), false);
-        editor.commit();
-
+    public void onClickSubtract_goesToZeroIfWillMakeNegativeAndAllowNegativeLpIsDisabled() {
+        LpCalculatorModel.setAllowsNegativeLp(false);
         onView(withId(R.id.LpCalculatorButton3)).perform(click());
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
         onView(withId(R.id.LpCalculatorButton0)).perform(click());
@@ -285,12 +290,8 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void onClickSubtract_goesNegativeIfWillMakeNegativeAndAllowNegativeLpIsEnabled(){
-        Context context = getInstrumentation().getTargetContext();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(context.getString(R.string.KEYallowNegativeLp), true);
-        editor.commit();
+    public void onClickSubtract_goesNegativeIfWillMakeNegativeAndAllowNegativeLpIsEnabled() {
+        LpCalculatorModel.setAllowsNegativeLp(true);
         onView(withId(R.id.LpCalculatorButton3)).perform(click());
         onView(withId(R.id.LpCalculatorButton000)).perform(click());
         onView(withId(R.id.LpCalculatorButton0)).perform(click());

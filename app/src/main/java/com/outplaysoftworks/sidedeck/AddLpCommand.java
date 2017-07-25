@@ -10,13 +10,11 @@ public class AddLpCommand implements Command {
 
     int target;
     int amount;
-    LpCalculatorModel model;
     TextView textView;
 
-    public AddLpCommand(int target, int amount, LpCalculatorModel model, TextView textView) {
+    public AddLpCommand(int target, int amount, TextView textView) {
         this.target = target;
         this.amount = amount;
-        this.model = model;
         this.textView = textView;
     }
 
@@ -25,12 +23,12 @@ public class AddLpCommand implements Command {
         CommandDelegator.commandHistory.add(this);
         switch(target){
             case 1:
-                model.addLpToPlayer1(amount);
-                textView.setText(Integer.toString(model.getPlayer1Lp()));
+                LpCalculatorModel.addLpToPlayer1(amount);
+                textView.setText(Integer.toString(LpCalculatorModel.getPlayer1Lp()));
                 return;
             case 2:
-                model.addLpToPlayer2(amount);
-                textView.setText(Integer.toString(model.getPlayer2Lp()));
+                LpCalculatorModel.addLpToPlayer2(amount);
+                textView.setText(Integer.toString(LpCalculatorModel.getPlayer2Lp()));
                 return;
             default:
         }
@@ -41,12 +39,12 @@ public class AddLpCommand implements Command {
         CommandDelegator.commandHistory.remove(this);
         switch(target){
             case 1:
-                model.subtractLpFromPlayer1(amount);
-                textView.setText(Integer.toString(model.getPlayer1Lp()));
+                LpCalculatorModel.subtractLpFromPlayer1(amount);
+                textView.setText(Integer.toString(LpCalculatorModel.getPlayer1Lp()));
                 return;
             case 2:
-                model.subtractLpFromPlayer2(amount);
-                textView.setText(Integer.toString(model.getPlayer2Lp()));
+                LpCalculatorModel.subtractLpFromPlayer2(amount);
+                textView.setText(Integer.toString(LpCalculatorModel.getPlayer2Lp()));
                 return;
             default:
         }

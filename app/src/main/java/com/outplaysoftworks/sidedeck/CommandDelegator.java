@@ -19,4 +19,7 @@ public class CommandDelegator {
         }
     }
 
+    public static void reset() {
+        commandHistory = new ArrayList<>();
+    }
 }
