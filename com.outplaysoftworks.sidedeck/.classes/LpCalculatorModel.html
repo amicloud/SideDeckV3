@@ -1,0 +1,225 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: LpCalculatorModel</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.outplaysoftworks.sidedeck</a> ]
+</div>
+
+<h1>Coverage Summary for Class: LpCalculatorModel (com.outplaysoftworks.sidedeck)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LpCalculatorModel</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (26/ 26)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    98%
+  </span>
+  <span class="absValue">
+    (49/ 50)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.outplaysoftworks.sidedeck;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;/**
+<i>4</i>&nbsp; * Created by Billy on 7/22/2017.
+<i>5</i>&nbsp; */
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;public class LpCalculatorModel {
+<i>8</i>&nbsp;    private String player1Name;
+<i>9</i>&nbsp;    private String player2Name;
+<i>10</i>&nbsp;    private boolean allowsNegativeLp;
+<i>11</i>&nbsp;    private int lpDefault;
+<i>12</i>&nbsp;    private int player1Lp;
+<i>13</i>&nbsp;    private int player2Lp;
+<i>14</i>&nbsp;    private int mEnteredValue;
+<i>15</i>&nbsp;    private int currentTurn;
+<i>16</i>&nbsp;
+<b class="fc"><i>17</i>&nbsp;    LpCalculatorModel(){</b>
+<i>18</i>&nbsp;
+<b class="fc"><i>19</i>&nbsp;    }</b>
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    int getEnteredValue() {
+<b class="fc"><i>22</i>&nbsp;        return mEnteredValue;</b>
+<i>23</i>&nbsp;    }
+<i>24</i>&nbsp;    private void setEnteredValue(int enteredValue) {
+<b class="fc"><i>25</i>&nbsp;        mEnteredValue = enteredValue;</b>
+<b class="fc"><i>26</i>&nbsp;    }</b>
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;    /**
+<i>29</i>&nbsp;     * If the final value would be less than 7 digits, appends the pressed number to the currently
+<i>30</i>&nbsp;     * entered value.
+<i>31</i>&nbsp;     *
+<i>32</i>&nbsp;     * @param i Integer to append to entered value
+<i>33</i>&nbsp;     * @return Returns true if successful, returns false otherwise.
+<i>34</i>&nbsp;     */
+<i>35</i>&nbsp;    boolean appendToEnteredValue(String i) {
+<b class="fc"><i>36</i>&nbsp;        String evString = Integer.toString(mEnteredValue);</b>
+<b class="fc"><i>37</i>&nbsp;        String appendedString = evString + i;</b>
+<b class="fc"><i>38</i>&nbsp;        if (appendedString.length() &lt; 7) {</b>
+<b class="fc"><i>39</i>&nbsp;            setEnteredValue(Integer.parseInt(appendedString));</b>
+<b class="fc"><i>40</i>&nbsp;            return true;</b>
+<i>41</i>&nbsp;        } else {
+<b class="fc"><i>42</i>&nbsp;            return false;</b>
+<i>43</i>&nbsp;        }
+<i>44</i>&nbsp;    }
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    boolean clearEnteredValue(){
+<b class="fc"><i>47</i>&nbsp;        setEnteredValue(0);</b>
+<b class="fc"><i>48</i>&nbsp;        return true;</b>
+<i>49</i>&nbsp;    }
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;    public int getLpDefault() {
+<b class="fc"><i>52</i>&nbsp;        return lpDefault;</b>
+<i>53</i>&nbsp;    }
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    public void setLpDefault(int lpDefault) {
+<b class="fc"><i>56</i>&nbsp;        this.lpDefault = lpDefault;</b>
+<b class="fc"><i>57</i>&nbsp;    }</b>
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;    public String getPlayer1Name() {
+<b class="fc"><i>60</i>&nbsp;        return player1Name;</b>
+<i>61</i>&nbsp;    }
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    public void setPlayer1Name(String player1Name) {
+<b class="fc"><i>64</i>&nbsp;        this.player1Name = player1Name;</b>
+<b class="fc"><i>65</i>&nbsp;    }</b>
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    public String getPlayer2Name() {
+<b class="fc"><i>68</i>&nbsp;        return player2Name;</b>
+<i>69</i>&nbsp;    }
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;    public void setPlayer2Name(String player2Name) {
+<b class="fc"><i>72</i>&nbsp;        this.player2Name = player2Name;</b>
+<b class="fc"><i>73</i>&nbsp;    }</b>
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    public boolean isAllowsNegativeLp() {
+<b class="fc"><i>76</i>&nbsp;        return allowsNegativeLp;</b>
+<i>77</i>&nbsp;    }
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    public void setAllowsNegativeLp(boolean allowsNegativeLp) {
+<b class="fc"><i>80</i>&nbsp;        this.allowsNegativeLp = allowsNegativeLp;</b>
+<b class="fc"><i>81</i>&nbsp;    }</b>
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;    public void addLpToPlayer1(int amount) {
+<b class="fc"><i>84</i>&nbsp;        player1Lp += amount;</b>
+<b class="fc"><i>85</i>&nbsp;    }</b>
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;    public void addLpToPlayer2(int amount) {
+<b class="fc"><i>88</i>&nbsp;        player2Lp += amount;</b>
+<b class="fc"><i>89</i>&nbsp;    }</b>
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;    public void subtractLpFromPlayer1(int amount){
+<b class="fc"><i>92</i>&nbsp;        player1Lp -= amount;</b>
+<b class="fc"><i>93</i>&nbsp;    }</b>
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;    public void subtractLpFromPlayer2(int amount){
+<b class="fc"><i>96</i>&nbsp;        player2Lp -= amount;</b>
+<b class="fc"><i>97</i>&nbsp;    }</b>
+<i>98</i>&nbsp;
+<i>99</i>&nbsp;    public int getPlayer1Lp() {
+<b class="fc"><i>100</i>&nbsp;        return player1Lp;</b>
+<i>101</i>&nbsp;    }
+<i>102</i>&nbsp;
+<i>103</i>&nbsp;    public void setPlayer1Lp(int player1Lp) {
+<b class="fc"><i>104</i>&nbsp;        this.player1Lp = player1Lp;</b>
+<b class="fc"><i>105</i>&nbsp;    }</b>
+<i>106</i>&nbsp;
+<i>107</i>&nbsp;    public int getPlayer2Lp() {
+<b class="fc"><i>108</i>&nbsp;        return player2Lp;</b>
+<i>109</i>&nbsp;    }
+<i>110</i>&nbsp;
+<i>111</i>&nbsp;    public void setPlayer2Lp(int player2Lp) {
+<b class="fc"><i>112</i>&nbsp;        this.player2Lp = player2Lp;</b>
+<b class="fc"><i>113</i>&nbsp;    }</b>
+<i>114</i>&nbsp;
+<i>115</i>&nbsp;
+<i>116</i>&nbsp;
+<i>117</i>&nbsp;    public int getCurrentTurn() {
+<b class="fc"><i>118</i>&nbsp;        return currentTurn;</b>
+<i>119</i>&nbsp;    }
+<i>120</i>&nbsp;
+<i>121</i>&nbsp;    private void setCurrentTurn(int currentTurn) {
+<b class="fc"><i>122</i>&nbsp;        this.currentTurn = currentTurn;</b>
+<b class="fc"><i>123</i>&nbsp;    }</b>
+<i>124</i>&nbsp;
+<i>125</i>&nbsp;    public boolean incrementTurn(){
+<b class="fc"><i>126</i>&nbsp;        currentTurn++;</b>
+<b class="fc"><i>127</i>&nbsp;        return true;</b>
+<i>128</i>&nbsp;    }
+<i>129</i>&nbsp;
+<i>130</i>&nbsp;    public boolean decrementTurn(){
+<b class="fc"><i>131</i>&nbsp;        if(currentTurn == 1){</b>
+<b class="nc"><i>132</i>&nbsp;            return false;</b>
+<i>133</i>&nbsp;        } else {
+<b class="fc"><i>134</i>&nbsp;        currentTurn--;</b>
+<b class="fc"><i>135</i>&nbsp;        return true;</b>
+<i>136</i>&nbsp;        }
+<i>137</i>&nbsp;    }
+<i>138</i>&nbsp;
+<i>139</i>&nbsp;    public void resetTurns(){
+<b class="fc"><i>140</i>&nbsp;        setCurrentTurn(1);</b>
+<b class="fc"><i>141</i>&nbsp;    }</b>
+<i>142</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-07-24 00:49</div>
+</div>
+</body>
+</html>
