@@ -84,24 +84,6 @@ public class LpCalculatorTests {
     }
 
     @Test
-    public void setsDefaultLpFromSettings() {
-        Context context = getInstrumentation().getTargetContext();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        int defaultLp = Integer.parseInt(sharedPreferences.getString(context.getString(R.string.KEYdefaultLpSetting), "8000"));
-        onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText(Integer.toString(defaultLp))));
-    }
-
-    @Test
-    public void setsPlayerNamesFromSettings() {
-        Context context = getInstrumentation().getTargetContext();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String player1Name = sharedPreferences.getString(context.getString(R.string.KEYplayerOneDefaultNameSetting), context.getString(R.string.playerOne));
-        onView(withId(R.id.LpCalculatorTextPlayer1Name)).check(matches(withText(player1Name)));
-        String player2Name = sharedPreferences.getString(context.getString(R.string.KEYplayerTwoDefaultNameSetting), context.getString(R.string.playerTwo));
-        onView(withId(R.id.LpCalculatorTextPlayer2Name)).check(matches(withText(player2Name)));
-    }
-
-    @Test
     public void onClickClearButton_clearEnteredValue() {
         onView(withId(R.id.LpCalculatorButton1)).perform(click());
         onView(withId(R.id.LpCalculatorButton2)).perform(click());
@@ -209,6 +191,24 @@ public class LpCalculatorTests {
         onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
         onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
         onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
+    }
+
+    @Test
+    public void onClickUndo_unexecutesLastTurnIncrement(){
+        onView(withId(R.id.LpCalculatorButtonTurn)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonTurn)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonTurn)).check(matches(withText("Turn\n1")));
+    }
+
+    @Test
+    public void onClickUndo_unexecutesLastTurnDecrement(){
+        onView(withId(R.id.LpCalculatorButtonTurn)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonTurn)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonTurn)).perform(longClick());
+        onView(withId(R.id.LpCalculatorButtonUndo)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonTurn)).check(matches(withText("Turn\n3")));
     }
 
     @Test

@@ -102,7 +102,6 @@ public class LpCalculator extends Fragment {
     private void initUIFromModel() {
         LpCalculatorModel.resetTurns();
         btTurn.setText(getString(R.string.turn) + Integer.toString(LpCalculatorModel.getCurrentTurn()));
-        System.out.println(btTurn.getText().toString());
     }
 
     private void initFromSettings(boolean resetPlayerNames) {
