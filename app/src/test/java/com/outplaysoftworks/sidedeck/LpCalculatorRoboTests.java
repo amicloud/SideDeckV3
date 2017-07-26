@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
+import org.robolectric.android.controller.ActivityController;
 import org.robolectric.annotation.Config;
 
 import static junit.framework.Assert.assertEquals;
@@ -128,15 +129,25 @@ public class LpCalculatorRoboTests {
         activity.findViewById(R.id.LpCalculatorButtonPlusPlayer1).performClick();
         activity.findViewById(R.id.LpCalculatorButtonUndo).performClick();
         assertEquals("Player 1 LP should be 8000", "8000", ((TextView) activity.findViewById(R.id.LpCalculatorTextPlayer1Lp)).getText().toString());
+        activity.findViewById(R.id.LpCalculatorButton1).performClick();
+        activity.findViewById(R.id.LpCalculatorButton000).performClick();
+        activity.findViewById(R.id.LpCalculatorButtonPlusPlayer2).performClick();
+        activity.findViewById(R.id.LpCalculatorButtonUndo).performClick();
+        assertEquals("Player 1 LP should be 8000", "8000", ((TextView) activity.findViewById(R.id.LpCalculatorTextPlayer2Lp)).getText().toString());
     }
 
     @Test
     public void onClickUndo_unexecutesLastSubtraction() {
         activity.findViewById(R.id.LpCalculatorButton1).performClick();
         activity.findViewById(R.id.LpCalculatorButton000).performClick();
-        activity.findViewById(R.id.LpCalculatorButtonPlusPlayer1).performClick();
+        activity.findViewById(R.id.LpCalculatorButtonMinusPlayer1).performClick();
         activity.findViewById(R.id.LpCalculatorButtonUndo).performClick();
         assertEquals("Player 1 LP should be 8000", "8000", ((TextView) activity.findViewById(R.id.LpCalculatorTextPlayer1Lp)).getText().toString());
+        activity.findViewById(R.id.LpCalculatorButton1).performClick();
+        activity.findViewById(R.id.LpCalculatorButton000).performClick();
+        activity.findViewById(R.id.LpCalculatorButtonMinusPlayer2).performClick();
+        activity.findViewById(R.id.LpCalculatorButtonUndo).performClick();
+        assertEquals("Player 2 LP should be 8000", "8000", ((TextView) activity.findViewById(R.id.LpCalculatorTextPlayer2Lp)).getText().toString());
     }
 
     @Test
@@ -207,4 +218,30 @@ public class LpCalculatorRoboTests {
 //        activity.findViewById(R.id.LpCalculatorButtonMinusPlayer1).performClick();
 //        assertEquals("Should go to -2000", "-2000", ((TextView) activity.findViewById(R.id.LpCalculatorTextPlayer1Lp)).getText().toString());
 //    }
+
+    @Test
+    public void onClickReset_doesReset(){
+        activity.findViewById(R.id.LpCalculatorButton1).performClick();
+        activity.findViewById(R.id.LpCalculatorButton000).performClick();
+        activity.findViewById(R.id.LpCalculatorButtonMinusPlayer1).performClick();
+        activity.findViewById(R.id.LpCalculatorButtonTurn).performClick();
+        activity.findViewById(R.id.LpCalculatorButton1).performClick();
+        activity.findViewById(R.id.LpCalculatorButton000).performClick();
+        activity.findViewById(R.id.LpCalculatorButtonMinusPlayer2).performClick();
+        activity.findViewById(R.id.LpCalculatorButtonTurn).performClick();
+        activity.findViewById(R.id.LpCalculatorButton1).performClick();
+        activity.findViewById(R.id.LpCalculatorButton000).performClick();
+        activity.findViewById(R.id.LpCalculatorButtonReset).performClick();
+        assertEquals("P1 LP should be 8000", "8000", ((TextView) activity.findViewById(R.id.LpCalculatorTextPlayer1Lp)).getText().toString());
+        assertEquals("P2 LP should be 8000", "8000", ((TextView) activity.findViewById(R.id.LpCalculatorTextPlayer2Lp)).getText().toString());
+        assertEquals("Entered value should be blank", "", ((TextView) activity.findViewById(R.id.LpCalculatorTextEnteredValue)).getText().toString());
+        assertEquals(LpCalculatorModel.getPlayer1Lp(), 8000);
+        assertEquals(LpCalculatorModel.getPlayer2Lp(), 8000);
+        assertEquals(LpCalculatorModel.getEnteredValue(), 0);
+    }
+
+    @Test
+    public void onDetatch(){
+        ActivityController activityController = Robolectric.buildActivity(MainActivity.class).create().destroy();
+    }
 }

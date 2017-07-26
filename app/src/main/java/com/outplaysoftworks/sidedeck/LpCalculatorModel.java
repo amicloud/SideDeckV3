@@ -14,10 +14,6 @@ public class LpCalculatorModel {
     static private int mEnteredValue;
     static private int currentTurn;
 
-    LpCalculatorModel(){
-
-    }
-
     static int getEnteredValue() {
         return mEnteredValue;
     }

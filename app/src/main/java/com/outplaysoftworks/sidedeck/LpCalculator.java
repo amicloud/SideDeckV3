@@ -121,22 +121,11 @@ public class LpCalculator extends Fragment {
             tvPlayer2Name.setText(LpCalculatorModel.getPlayer2Name());
         }
     }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
         }
     }
 
@@ -162,6 +151,7 @@ public class LpCalculator extends Fragment {
 
     public void setupTextChangedListerners(){
         tvPlayer1Name.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -289,5 +279,6 @@ public class LpCalculator extends Fragment {
         initFromSettings(false);
         initUIFromModel();
         CommandDelegator.reset();
+        clearEnteredValue();
     }
 }

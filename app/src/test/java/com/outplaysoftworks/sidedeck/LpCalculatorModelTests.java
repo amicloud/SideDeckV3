@@ -15,106 +15,105 @@ public class LpCalculatorModelTests {
     @Before
     public void init(){
         //Mock loading settings from preferences
-        model = new LpCalculatorModel();
-        model.resetTurns();
-        model.setLpDefault(8000);
-        model.setPlayer1Lp(model.getLpDefault());
-        model.setPlayer2Lp(model.getLpDefault());
-        model.setPlayer1Name("Player 1");
-        model.setPlayer2Name("Player 2");
+        LpCalculatorModel.resetTurns();
+        LpCalculatorModel.setLpDefault(8000);
+        LpCalculatorModel.setPlayer1Lp(LpCalculatorModel.getLpDefault());
+        LpCalculatorModel.setPlayer2Lp(LpCalculatorModel.getLpDefault());
+        LpCalculatorModel.setPlayer1Name("Player 1");
+        LpCalculatorModel.setPlayer2Name("Player 2");
     }
 
     @Test
     public void addsLpToPlayer1(){
-        model.addLpToPlayer1(1000);
-        assertEquals(9000, model.getPlayer1Lp());
+        LpCalculatorModel.addLpToPlayer1(1000);
+        assertEquals(9000, LpCalculatorModel.getPlayer1Lp());
     }
 
     @Test
     public void addsLpToPlayer2(){
-        model.addLpToPlayer2(1000);
-        assertEquals(9000, model.getPlayer2Lp());
+        LpCalculatorModel.addLpToPlayer2(1000);
+        assertEquals(9000, LpCalculatorModel.getPlayer2Lp());
     }
 
     @Test
     public void subtractsLpFromPlayer1(){
-        model.subtractLpFromPlayer1(1000);
-        assertEquals(7000, model.getPlayer1Lp());
+        LpCalculatorModel.subtractLpFromPlayer1(1000);
+        assertEquals(7000, LpCalculatorModel.getPlayer1Lp());
     }
 
     @Test
     public void subtractsLpFromPlayer2(){
-        model.subtractLpFromPlayer2(1000);
-        assertEquals(7000, model.getPlayer2Lp());
+        LpCalculatorModel.subtractLpFromPlayer2(1000);
+        assertEquals(7000, LpCalculatorModel.getPlayer2Lp());
     }
 
     @Test
     public void appendsToEnteredValue_ifValidValue(){
-        model.appendToEnteredValue("780");
-        assertEquals(780, model.getEnteredValue());
+        LpCalculatorModel.appendToEnteredValue("780");
+        assertEquals(780, LpCalculatorModel.getEnteredValue());
     }
 
     @Test
     public void doesNotAppendToEnteredValue_ifValueToHigh(){
-        model.appendToEnteredValue("7800000");
-        System.out.println(model.getEnteredValue());
-        assertEquals(0, model.getEnteredValue());
+        LpCalculatorModel.appendToEnteredValue("7800000");
+        System.out.println(LpCalculatorModel.getEnteredValue());
+        assertEquals(0, LpCalculatorModel.getEnteredValue());
     }
 
     @Test
     public void setsAndGetsPlayer1Name(){
         String testName = "Test Player 1";
-        model.setPlayer1Name(testName);
-        assertEquals(testName, model.getPlayer1Name());
+        LpCalculatorModel.setPlayer1Name(testName);
+        assertEquals(testName, LpCalculatorModel.getPlayer1Name());
     }
 
     @Test
     public void setsAndGetsPlayer2Name(){
         String testName = "Test Player 2";
-        model.setPlayer2Name(testName);
-        assertEquals(testName, model.getPlayer2Name());
+        LpCalculatorModel.setPlayer2Name(testName);
+        assertEquals(testName, LpCalculatorModel.getPlayer2Name());
     }
 
     @Test
     public void clearsEnteredValue(){
-        model.appendToEnteredValue("1000");
-        model.clearEnteredValue();
-        assertEquals(0, model.getEnteredValue());
+        LpCalculatorModel.appendToEnteredValue("1000");
+        LpCalculatorModel.clearEnteredValue();
+        assertEquals(0, LpCalculatorModel.getEnteredValue());
     }
 
     @Test
     public void setsAndGetsIsAllowsNegativeLp(){
-        model.setAllowsNegativeLp(false);
-        assertEquals(false, model.getAllowsNegativeLp());
-        model.setAllowsNegativeLp(true);
-        assertEquals(true, model.getAllowsNegativeLp());
+        LpCalculatorModel.setAllowsNegativeLp(false);
+        assertEquals(false, LpCalculatorModel.getAllowsNegativeLp());
+        LpCalculatorModel.setAllowsNegativeLp(true);
+        assertEquals(true, LpCalculatorModel.getAllowsNegativeLp());
     }
 
     @Test
     public void getsCurrentTurn(){
-        assertEquals(1, model.getCurrentTurn());
+        assertEquals(1, LpCalculatorModel.getCurrentTurn());
     }
 
     @Test
     public void incrementsCurrentTurn(){
-        model.incrementTurn();
-        model.incrementTurn();
-        assertEquals(3, model.getCurrentTurn());
+        LpCalculatorModel.incrementTurn();
+        LpCalculatorModel.incrementTurn();
+        assertEquals(3, LpCalculatorModel.getCurrentTurn());
     }
 
     @Test
     public void decrementsCurrentTurn(){
-        model.incrementTurn();
-        model.incrementTurn();
-        model.decrementTurn();
-        model.decrementTurn();
-        assertEquals(1, model.getCurrentTurn());
+        LpCalculatorModel.incrementTurn();
+        LpCalculatorModel.incrementTurn();
+        LpCalculatorModel.decrementTurn();
+        LpCalculatorModel.decrementTurn();
+        assertEquals(1, LpCalculatorModel.getCurrentTurn());
     }
 
     @Test
     public void doesNotDecrementTurnIfCurrentTurnIs1(){
-        model.decrementTurn();
-        model.decrementTurn();
-        assertEquals(1, model.getCurrentTurn());
+        LpCalculatorModel.decrementTurn();
+        LpCalculatorModel.decrementTurn();
+        assertEquals(1, LpCalculatorModel.getCurrentTurn());
     }
 }
