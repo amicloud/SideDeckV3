@@ -325,6 +325,17 @@ public class LpCalculatorTests {
     }
 
     @Test
+    public void animatesTextViewLongerDurationOnClickMinusToZero(){
+        onView(withId(R.id.LpCalculatorButton8)).perform(click());
+        onView(withId(R.id.LpCalculatorButton000)).perform(click());
+        onView(withId(R.id.LpCalculatorButtonMinusPlayer1)).perform(click());
+        SystemClock.sleep(AppConstants.LPCHANGEANIMATIONDURATION + durationSleepPadding);
+        onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(not(withText("0"))));
+        SystemClock.sleep(AppConstants.LPCHANGEANIMATIONDURATION + durationSleepPadding);//Wait some additional time
+        onView(withId(R.id.LpCalculatorTextPlayer1Lp)).check(matches(withText("0")));
+    }
+
+    @Test
     public void doesNotAnimateTextViewOnUndo(){
         onView(withId(R.id.LpCalculatorButton3)).perform(click());
         onView(withId(R.id.LpCalculatorButton000)).perform(click());

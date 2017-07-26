@@ -20,6 +20,7 @@ class SubtractLpCommand implements Command {
     public void execute() {
         CommandDelegator.commandHistory.add(this);
         int prevLp;
+        boolean zero;
         switch(target){
             case 1:
                 prevLp = LpCalculatorModel.getPlayer1Lp();
@@ -32,7 +33,11 @@ class SubtractLpCommand implements Command {
                     }
                 }
                 LpCalculatorModel.subtractLpFromPlayer1(amount);
-                animateTextView(prevLp, LpCalculatorModel.getPlayer1Lp(), textView, false);
+                zero = false;
+                if(LpCalculatorModel.getPlayer1Lp() == 0){
+                    zero = true;
+                }
+                animateTextView(prevLp, LpCalculatorModel.getPlayer1Lp(), textView, zero);
                 return;
             case 2:
                 prevLp = LpCalculatorModel.getPlayer2Lp();
@@ -45,7 +50,11 @@ class SubtractLpCommand implements Command {
                     }
                 }
                 LpCalculatorModel.subtractLpFromPlayer2(amount);
-                animateTextView(prevLp, LpCalculatorModel.getPlayer2Lp(), textView, false);
+                zero = false;
+                if(LpCalculatorModel.getPlayer2Lp() == 0){
+                    zero = true;
+                }
+                animateTextView(prevLp, LpCalculatorModel.getPlayer2Lp(), textView, zero);
                 return;
             default:
         }
