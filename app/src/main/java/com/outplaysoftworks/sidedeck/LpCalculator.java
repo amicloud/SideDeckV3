@@ -259,19 +259,15 @@ public class LpCalculator extends Fragment {
 
     @OnClick(R.id.LpCalculatorButtonTurn)
     public void onClickTurn(){
-        if(LpCalculatorModel.incrementTurn()){
-            btTurn.setText(getString(R.string.turn) + Integer.toString(LpCalculatorModel.getCurrentTurn()));
-        }
+        IncrementTurnCommand command = new IncrementTurnCommand(btTurn, getString(R.string.turn));
+        command.execute();
     }
 
     @OnLongClick(R.id.LpCalculatorButtonTurn)
     public boolean onLongClickTurn(){
-        if(LpCalculatorModel.decrementTurn()){
-            btTurn.setText(getString(R.string.turn) + Integer.toString(LpCalculatorModel.getCurrentTurn()));
-            return true;
-        } else{
-            return true;
-        }
+        DecrementTurnCommand command = new DecrementTurnCommand(btTurn, getString(R.string.turn));
+        command.execute();
+        return true;
     }
 
     @OnClick(R.id.LpCalculatorButtonReset)

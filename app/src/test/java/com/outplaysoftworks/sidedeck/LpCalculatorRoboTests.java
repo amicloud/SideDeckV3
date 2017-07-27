@@ -157,22 +157,6 @@ public class LpCalculatorRoboTests {
         activity.findViewById(R.id.LpCalculatorButtonUndo).performClick();
     }
 
-    @Test
-    public void onClickUndo_unexecutesLastTurnIncrement(){
-        activity.findViewById(R.id.LpCalculatorButtonTurn).performClick();
-        activity.findViewById(R.id.LpCalculatorButtonTurn).performClick();
-        activity.findViewById(R.id.LpCalculatorButtonUndo).performClick();
-        assertEquals("Turn Should Display Turn\n2", "Turn\n2", ((Button) activity.findViewById(R.id.LpCalculatorButtonTurn)).getText().toString());
-    }
-
-    @Test
-    public void onClickUndo_unexecutesLastTurnDecrement(){
-        activity.findViewById(R.id.LpCalculatorButtonTurn).performClick();
-        activity.findViewById(R.id.LpCalculatorButtonTurn).performClick();
-        activity.findViewById(R.id.LpCalculatorButtonTurn).performLongClick();
-        activity.findViewById(R.id.LpCalculatorButtonUndo).performClick();
-        assertEquals("Turn Should Display Turn\n3", "Turn\n3", ((Button) activity.findViewById(R.id.LpCalculatorButtonTurn)).getText().toString());
-    }
 
     @Test
     public void onInit_setsUpTurnDisplay() {
@@ -197,6 +181,23 @@ public class LpCalculatorRoboTests {
     public void onLongClickTurn_doNothingIfOnTurn1() {
         activity.findViewById(R.id.LpCalculatorButtonTurn).performLongClick();
         assertEquals("Turn Should Display Turn\n1", "Turn\n1", ((Button) activity.findViewById(R.id.LpCalculatorButtonTurn)).getText().toString());
+    }
+
+    @Test
+    public void onClickUndo_unexecutesLastTurnIncrement(){
+        activity.findViewById(R.id.LpCalculatorButtonTurn).performClick();
+        activity.findViewById(R.id.LpCalculatorButtonTurn).performClick();
+        activity.findViewById(R.id.LpCalculatorButtonUndo).performClick();
+        assertEquals("Turn Should Display Turn\n2", "Turn\n2", ((Button) activity.findViewById(R.id.LpCalculatorButtonTurn)).getText().toString());
+    }
+
+    @Test
+    public void onClickUndo_unexecutesLastTurnDecrement(){
+        activity.findViewById(R.id.LpCalculatorButtonTurn).performClick();
+        activity.findViewById(R.id.LpCalculatorButtonTurn).performClick();
+        activity.findViewById(R.id.LpCalculatorButtonTurn).performLongClick();
+        activity.findViewById(R.id.LpCalculatorButtonUndo).performClick();
+        assertEquals("Turn Should Display Turn\n3", "Turn\n3", ((Button) activity.findViewById(R.id.LpCalculatorButtonTurn)).getText().toString());
     }
 
 //    @Test
@@ -244,4 +245,8 @@ public class LpCalculatorRoboTests {
     public void onDetatch(){
         ActivityController activityController = Robolectric.buildActivity(MainActivity.class).create().destroy();
     }
+
+
+
+
 }
