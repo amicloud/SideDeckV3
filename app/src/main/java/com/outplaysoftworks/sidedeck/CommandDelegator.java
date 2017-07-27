@@ -22,4 +22,15 @@ public class CommandDelegator {
     public static void reset() {
         commandHistory = new ArrayList<>();
     }
+
+    public static void executeAll() {
+        ArrayList<Command> oldCommands = new ArrayList<>();
+        for(Command command : commandHistory){
+            oldCommands.add(command);
+        }
+        commandHistory.clear();
+        for(Command command : oldCommands){
+            command.execute();
+        }
+    }
 }

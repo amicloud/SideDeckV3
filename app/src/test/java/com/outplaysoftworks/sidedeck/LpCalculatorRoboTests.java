@@ -200,26 +200,6 @@ public class LpCalculatorRoboTests {
         assertEquals("Turn Should Display Turn\n3", "Turn\n3", ((Button) activity.findViewById(R.id.LpCalculatorButtonTurn)).getText().toString());
     }
 
-//    @Test
-//    public void onClickSubtract_goesToZeroIfWillMakeNegativeAndAllowNegativeLpIsDisabled() {
-//        activity.findViewById(R.id.LpCalculatorButton1).performClick();
-//        activity.findViewById(R.id.LpCalculatorButton0).performClick();
-//        activity.findViewById(R.id.LpCalculatorButton000).performClick();
-//        activity.findViewById(R.id.LpCalculatorButtonMinusPlayer1).performClick();
-//
-//        assertEquals("Should go to 0", "0", ((TextView) activity.findViewById(R.id.LpCalculatorTextPlayer1Lp)).getText().toString());
-//    }
-//
-//    @Test
-//    public void onClickSubtract_goesNegativeIfWillMakeNegativeAndAllowNegativeLpIsEnabled() {
-//        LpCalculatorModel.setAllowsNegativeLp(false);
-//        activity.findViewById(R.id.LpCalculatorButton1).performClick();
-//        activity.findViewById(R.id.LpCalculatorButton0).performClick();
-//        activity.findViewById(R.id.LpCalculatorButton000).performClick();
-//        activity.findViewById(R.id.LpCalculatorButtonMinusPlayer1).performClick();
-//        assertEquals("Should go to -2000", "-2000", ((TextView) activity.findViewById(R.id.LpCalculatorTextPlayer1Lp)).getText().toString());
-//    }
-
     @Test
     public void onClickReset_doesReset(){
         activity.findViewById(R.id.LpCalculatorButton1).performClick();

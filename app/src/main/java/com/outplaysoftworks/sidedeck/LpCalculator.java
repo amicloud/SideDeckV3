@@ -89,6 +89,11 @@ public class LpCalculator extends Fragment {
         initFromSettings(true);
         initUIFromModel();
         setupTextChangedListerners();
+        restoreFromCommandDelegator();
+    }
+
+    private void restoreFromCommandDelegator() {
+        CommandDelegator.executeAll();
     }
 
     private void setupAutoFitTextViews() {
@@ -267,7 +272,7 @@ public class LpCalculator extends Fragment {
     public boolean onLongClickTurn(){
         DecrementTurnCommand command = new DecrementTurnCommand(btTurn, getString(R.string.turn));
         command.execute();
-        return true;
+        return false;
     }
 
     @OnClick(R.id.LpCalculatorButtonReset)
