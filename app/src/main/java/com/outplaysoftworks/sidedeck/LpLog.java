@@ -108,7 +108,6 @@ public class LpLog extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
@@ -167,6 +166,7 @@ public class LpLog extends Fragment {
             tvLpDifference.setTextColor(getResources().getColor(R.color.colorGreen));
         } else{
             tvLpDifference.setTextColor(getResources().getColor(R.color.colorRed));
+            ivArrow.setImageDrawable(getResources().getDrawable(R.drawable.arrow_down));
         }
         tvLpDifference.setText(Integer.toString(diff));
         tvLpAfter.setText(Integer.toString(lpAfter));
@@ -175,12 +175,11 @@ public class LpLog extends Fragment {
         header.addView(entry, 1);
     }
 
-
-
-
-
-
-
+    public void onAddSubtractUndo(){
+        if(headers.get(LpCalculatorModel.getCurrentTurn()).getChildCount() > 1){
+            headers.get(LpCalculatorModel.getCurrentTurn()).removeViewAt(1);
+        }
+    }
 
 
 

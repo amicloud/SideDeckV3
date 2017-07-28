@@ -50,10 +50,12 @@ class AddLpCommand implements Command {
             case 1:
                 LpCalculatorModel.subtractLpFromPlayer1(amount);
                 textView.setText(Integer.toString(LpCalculatorModel.getPlayer1Lp()));
+                log.onAddSubtractUndo();
                 return;
             case 2:
                 LpCalculatorModel.subtractLpFromPlayer2(amount);
                 textView.setText(Integer.toString(LpCalculatorModel.getPlayer2Lp()));
+                log.onAddSubtractUndo();
                 return;
             default:
         }
