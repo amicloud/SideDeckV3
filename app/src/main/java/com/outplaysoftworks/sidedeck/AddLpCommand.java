@@ -13,11 +13,13 @@ class AddLpCommand implements Command {
     private int target;
     private int amount;
     private TextView textView;
+    private LpLog log;
 
-    AddLpCommand(int target, int amount, TextView textView) {
+    AddLpCommand(int target, int amount, TextView textView, LpLog log) {
         this.target = target;
         this.amount = amount;
         this.textView = textView;
+        this.log = log;
     }
 
     @Override
@@ -29,13 +31,13 @@ class AddLpCommand implements Command {
                 prevLp = LpCalculatorModel.getPlayer1Lp();
                 LpCalculatorModel.addLpToPlayer1(amount);
                 animateTextView(prevLp, LpCalculatorModel.getPlayer1Lp(), textView, false);
-                //textView.setText(Integer.toString(LpCalculatorModel.getPlayer1Lp()));
+                log.onAdd(this);
                 return;
             case 2:
                 prevLp = LpCalculatorModel.getPlayer2Lp();
                 LpCalculatorModel.addLpToPlayer2(amount);
                 animateTextView(prevLp, LpCalculatorModel.getPlayer2Lp(), textView, false);
-                //textView.setText(Integer.toString(LpCalculatorModel.getPlayer2Lp()));
+                log.onAdd(this);
                 return;
             default:
         }
@@ -55,5 +57,23 @@ class AddLpCommand implements Command {
                 return;
             default:
         }
+    }
+
+    @Override
+    public int getTarget() {
+        return target;
+    }
+
+    @Override
+    public int getAmount() {
+        return amount;
+    }
+
+    public TextView getTextView() {
+        return textView;
+    }
+
+    public LpLog getLog() {
+        return log;
     }
 }

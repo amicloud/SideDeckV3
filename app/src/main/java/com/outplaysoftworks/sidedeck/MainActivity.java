@@ -27,13 +27,18 @@ public class MainActivity extends AppCompatActivity implements LpCalculator.OnFr
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     @SuppressWarnings("FieldCanBeLocal")
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    public static SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     @SuppressWarnings("FieldCanBeLocal")
     private ViewPager mViewPager;
+    private static LpLog logFragment;
+
+    public static LpLog getLogFragment() {
+        return logFragment;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +115,8 @@ public class MainActivity extends AppCompatActivity implements LpCalculator.OnFr
                 case 0:
                     return LpCalculator.newInstance();
                 case 1:
-                    return LpLog.newInstance();
+                    logFragment = LpLog.newInstance();
+                    return logFragment;
                 default:
                     return null;
             }

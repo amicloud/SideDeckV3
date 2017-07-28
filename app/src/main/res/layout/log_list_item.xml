@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/logListItemPlayerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="Player Name"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        android:layout_weight="1"
+        android:maxLines="1" />
+
+    <TextView
+        android:id="@+id/logListItemLpDifference"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="999999"
+        android:textColor="@color/colorWhite"
+        android:textSize="22sp"
+        android:layout_weight="1"
+        android:maxLines="1" />
+
+    <ImageView
+        android:id="@+id/logListItemArrow"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/arrow_up"
+        android:cropToPadding="false"
+        android:layout_width="22dp" />
+
+    <TextView
+        android:id="@+id/logListItemLpFinal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="999999"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        android:layout_weight="1"
+        android:maxLines="1" />
+
+</LinearLayout>

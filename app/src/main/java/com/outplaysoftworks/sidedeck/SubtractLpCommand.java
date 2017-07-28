@@ -9,11 +9,13 @@ class SubtractLpCommand implements Command {
     private int target;
     private int amount;
     private TextView textView;
+    private LpLog log;
 
-    SubtractLpCommand(int target, int amount, TextView textView) {
+    SubtractLpCommand(int target, int amount, TextView textView, LpLog log) {
         this.target = target;
         this.amount = amount;
         this.textView = textView;
+        this.log = log;
     }
 
     @Override
@@ -29,6 +31,7 @@ class SubtractLpCommand implements Command {
                         amount = LpCalculatorModel.getPlayer1Lp();
                         LpCalculatorModel.subtractLpFromPlayer1(amount);
                         animateTextView(prevLp, LpCalculatorModel.getPlayer1Lp(), textView, true);
+                        log.onSubtract(this);
                         return;
                     }
                 }
@@ -38,6 +41,7 @@ class SubtractLpCommand implements Command {
                     zero = true;
                 }
                 animateTextView(prevLp, LpCalculatorModel.getPlayer1Lp(), textView, zero);
+                log.onSubtract(this);
                 return;
             case 2:
                 prevLp = LpCalculatorModel.getPlayer2Lp();
@@ -46,6 +50,7 @@ class SubtractLpCommand implements Command {
                         amount = LpCalculatorModel.getPlayer2Lp();
                         LpCalculatorModel.subtractLpFromPlayer2(amount);
                         animateTextView(prevLp, LpCalculatorModel.getPlayer2Lp(), textView, false);
+                        log.onSubtract(this);
                         return;
                     }
                 }
@@ -55,6 +60,7 @@ class SubtractLpCommand implements Command {
                     zero = true;
                 }
                 animateTextView(prevLp, LpCalculatorModel.getPlayer2Lp(), textView, zero);
+                log.onSubtract(this);
                 return;
             default:
         }
@@ -74,5 +80,19 @@ class SubtractLpCommand implements Command {
                 return;
             default:
         }
+    }
+
+    @Override
+    public int getTarget() {
+        return target;
+    }
+
+    @Override
+    public int getAmount() {
+        return amount;
+    }
+
+    public TextView getTextView() {
+        return textView;
     }
 }

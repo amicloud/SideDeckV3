@@ -22,11 +22,10 @@ import static junit.framework.Assert.assertEquals;
  * Created by Billy on 7/25/2017.
  */
 @RunWith(RobolectricTestRunner.class)
-
-//@Config(manifest = "src/main/AndroidManifest.xml", sdk = 18)
 @Config(constants = BuildConfig.class)
 public class LpCalculatorRoboTests {
     MainActivity activity;
+    private int durationSleepPadding = 250;
 
     @Before
     public void initSettingsForTesting() {
@@ -225,8 +224,4 @@ public class LpCalculatorRoboTests {
     public void onDetatch(){
         ActivityController activityController = Robolectric.buildActivity(MainActivity.class).create().destroy();
     }
-
-
-
-
 }

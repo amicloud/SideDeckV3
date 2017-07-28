@@ -77,8 +77,6 @@ public class LpCalculator extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_lp_calculator, container, false);
         ButterKnife.bind(this, view);
-        //mLpCalculatorModel = new LpCalculatorModel();
-
         return view;
     }
 
@@ -228,7 +226,8 @@ public class LpCalculator extends Fragment {
     @OnClick(R.id.LpCalculatorButtonPlusPlayer1)
     public void onClickPlusPlayer1(View view){
         if(tvEnteredValue.getText().equals("")) return;
-        AddLpCommand command = new AddLpCommand(1, LpCalculatorModel.getEnteredValue(), tvPlayer1Lp);
+        LpLog log = MainActivity.getLogFragment();
+        AddLpCommand command = new AddLpCommand(1, LpCalculatorModel.getEnteredValue(), tvPlayer1Lp, log);
         command.execute();
         clearEnteredValue();
     }
@@ -236,7 +235,8 @@ public class LpCalculator extends Fragment {
     @OnClick(R.id.LpCalculatorButtonMinusPlayer1)
     public void onClickMinusPlayer1(View view){
         if(tvEnteredValue.getText().equals("")) return;
-        SubtractLpCommand command = new SubtractLpCommand(1, LpCalculatorModel.getEnteredValue(), tvPlayer1Lp);
+        LpLog log = MainActivity.getLogFragment();
+        SubtractLpCommand command = new SubtractLpCommand(1, LpCalculatorModel.getEnteredValue(), tvPlayer1Lp, log);
         command.execute();
         clearEnteredValue();
     }
@@ -244,7 +244,8 @@ public class LpCalculator extends Fragment {
     @OnClick(R.id.LpCalculatorButtonPlusPlayer2)
     public void onClickPlusPlayer2(View view){
         if(tvEnteredValue.getText().equals("")) return;
-        AddLpCommand command = new AddLpCommand(2, LpCalculatorModel.getEnteredValue(), tvPlayer2Lp);
+        LpLog log = MainActivity.getLogFragment();
+        AddLpCommand command = new AddLpCommand(2, LpCalculatorModel.getEnteredValue(), tvPlayer2Lp, log);
         command.execute();
         clearEnteredValue();
     }
@@ -252,7 +253,8 @@ public class LpCalculator extends Fragment {
     @OnClick(R.id.LpCalculatorButtonMinusPlayer2)
     public void onClickMinusPlayer2(View view){
         if(tvEnteredValue.getText().equals("")) return;
-        SubtractLpCommand command = new SubtractLpCommand(2, LpCalculatorModel.getEnteredValue(), tvPlayer2Lp);
+        LpLog log = MainActivity.getLogFragment();
+        SubtractLpCommand command = new SubtractLpCommand(2, LpCalculatorModel.getEnteredValue(), tvPlayer2Lp, log);
         command.execute();
         clearEnteredValue();
     }
@@ -264,7 +266,8 @@ public class LpCalculator extends Fragment {
 
     @OnClick(R.id.LpCalculatorButtonTurn)
     public void onClickTurn(){
-        IncrementTurnCommand command = new IncrementTurnCommand(btTurn, getString(R.string.turn));
+        LpLog log = MainActivity.getLogFragment();
+        IncrementTurnCommand command = new IncrementTurnCommand(btTurn, getString(R.string.turn), log);
         command.execute();
     }
 
@@ -272,7 +275,7 @@ public class LpCalculator extends Fragment {
     public boolean onLongClickTurn(){
         DecrementTurnCommand command = new DecrementTurnCommand(btTurn, getString(R.string.turn));
         command.execute();
-        return false;
+        return true;
     }
 
     @OnClick(R.id.LpCalculatorButtonReset)

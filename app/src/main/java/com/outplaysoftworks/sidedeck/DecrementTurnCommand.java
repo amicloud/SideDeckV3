@@ -31,4 +31,14 @@ public class DecrementTurnCommand implements Command {
             btTurn.setText(turnString + Integer.toString(LpCalculatorModel.getCurrentTurn()));
         }
     }
+
+    @Override
+    public int getTarget() {
+        return 0;
+    }
+
+    @Override
+    public int getAmount() {
+        return 0;
+    }
 }

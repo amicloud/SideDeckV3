@@ -7,6 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import java.util.HashMap;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
@@ -19,6 +27,10 @@ import android.view.ViewGroup;
  */
 public class LpLog extends Fragment {
     private OnFragmentInteractionListener mListener;
+    HashMap<Integer, LinearLayout> headers = new HashMap<Integer, LinearLayout>();
+
+    @BindView(R.id.loglist)
+    LinearLayout lvEntries;
 
     public LpLog() {
         // Required empty public constructor
@@ -30,12 +42,9 @@ public class LpLog extends Fragment {
      *
      * @return A new instance of fragment LpLog.
      */
-    // TODO: Rename and change types and number of parameters
     public static LpLog newInstance() {
         LpLog fragment = new LpLog();
         Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -45,14 +54,26 @@ public class LpLog extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lp_log, container, false);
+        View view = inflater.inflate(R.layout.fragment_lp_log, container, false);
+        ButterKnife.bind(this, view);
+        addHeader();
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+    /*
+        * Preparing the list data
+        */
+
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -90,4 +111,81 @@ public class LpLog extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    public void onTurnIncremented(Command command){
+        if(!headers.containsKey(LpCalculatorModel.getCurrentTurn())){
+            addHeader();
+        }
+    }
+
+    public void onAdd(AddLpCommand command){
+        if(command.getTarget() == 1){
+            addEntryToHeader(command.getTarget(), command.getAmount(), LpCalculatorModel.getPlayer1Lp(), true);
+        }
+        if(command.getTarget() == 2){
+            addEntryToHeader(command.getTarget(), command.getAmount(), LpCalculatorModel.getPlayer2Lp(), true);
+        }
+    }
+
+    public void onSubtract(SubtractLpCommand command){
+        if(command.getTarget() == 1){
+            addEntryToHeader(command.getTarget(), command.getAmount(), LpCalculatorModel.getPlayer1Lp(), false);
+        }
+        if(command.getTarget() == 2){
+            addEntryToHeader(command.getTarget(), command.getAmount(), LpCalculatorModel.getPlayer2Lp(), false);
+        }
+    }
+
+    public void addHeader(){
+        String turnString = getString(R.string.turn).trim() + " " + LpCalculatorModel.getCurrentTurn();
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        LinearLayout header = (LinearLayout) inflater.inflate(R.layout.log_list_group, null);
+        TextView text = ButterKnife.findById(header, R.id.logListHeader);
+        text.setText(turnString);
+        headers.put(LpCalculatorModel.getCurrentTurn(), header);
+        lvEntries.addView(header, 0);
+    }
+
+    public void addEntryToHeader(int player, int diff, int lpAfter, boolean isIncrease){
+        LinearLayout header = headers.get(LpCalculatorModel.getCurrentTurn());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        LinearLayout entry = (LinearLayout) inflater.inflate(R.layout.log_list_item, null);
+        TextView tvName = ButterKnife.findById(entry, R.id.logListItemPlayerName);
+        TextView tvLpDifference = ButterKnife.findById(entry, R.id.logListItemLpDifference);
+        TextView tvLpAfter = ButterKnife.findById(entry, R.id.logListItemLpFinal);
+        ImageView ivArrow = ButterKnife.findById(entry, R.id.logListItemArrow);
+        switch(player){
+            case 1:
+                tvName.setText(LpCalculatorModel.getPlayer1Name());
+                break;
+            case 2:
+                tvName.setText(LpCalculatorModel.getPlayer2Name());
+                break;
+        }
+        //TODO: Arrow drawables
+        if(isIncrease){
+            tvLpDifference.setTextColor(getResources().getColor(R.color.colorGreen));
+        } else{
+            tvLpDifference.setTextColor(getResources().getColor(R.color.colorRed));
+        }
+        tvLpDifference.setText(Integer.toString(diff));
+        tvLpAfter.setText(Integer.toString(lpAfter));
+
+
+        header.addView(entry, 1);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

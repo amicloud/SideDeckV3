@@ -11,26 +11,38 @@ public class IncrementTurnCommand implements Command {
 
     private final Button btTurn;
     private final String turnString;
+    LpLog logFragment;
 
-    public IncrementTurnCommand(Button btTurn, String turnString) {
-
+    public IncrementTurnCommand(Button btTurn, String turnString, LpLog logFragment) {
         this.btTurn = btTurn;
         this.turnString = turnString;
+        this.logFragment = logFragment;
     }
 
     @Override
     public void execute() {
-        CommandDelegator.commandHistory.add(this);
         if(LpCalculatorModel.incrementTurn()){
+            CommandDelegator.commandHistory.add(this);
             btTurn.setText(turnString + Integer.toString(LpCalculatorModel.getCurrentTurn()));
+            logFragment.onTurnIncremented(this);
         }
     }
 
     @Override
     public void unExecute() {
-        CommandDelegator.commandHistory.remove(this);
         if(LpCalculatorModel.decrementTurn()){
+            CommandDelegator.commandHistory.remove(this);
             btTurn.setText(turnString + Integer.toString(LpCalculatorModel.getCurrentTurn()));
         }
+    }
+
+    @Override
+    public int getTarget() {
+        return 0;
+    }
+
+    @Override
+    public int getAmount() {
+        return 0;
     }
 }
