@@ -72,7 +72,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setupActionBar();
+        setupActionBar();
         getFragmentManager().beginTransaction().replace(android.R.id.content, new
                 GeneralPreferenceFragment()).commit();
     }
@@ -84,7 +84,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             // Show the Up button in the action bar.
-            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(false);
         }
     }
 

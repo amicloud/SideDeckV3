@@ -68,11 +68,8 @@ public class LpLog extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+//        reset();
     }
-    /*
-        * Preparing the list data
-        */
-
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -92,9 +89,22 @@ public class LpLog extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        reset();
+        super.onPause();
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void reset() {
+        LinearLayout layout = ButterKnife.findById(getActivity(), R.id.loglist);
+        layout.removeAllViews();
+        headers.clear();
+        addHeader();
     }
 
     /**

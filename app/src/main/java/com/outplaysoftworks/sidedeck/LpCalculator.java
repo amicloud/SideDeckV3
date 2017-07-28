@@ -87,6 +87,7 @@ public class LpCalculator extends Fragment {
         initFromSettings(true);
         initUIFromModel();
         setupTextChangedListerners();
+//        MainActivity.getLogFragment().reset();
         restoreFromCommandDelegator();
     }
 
@@ -284,5 +285,6 @@ public class LpCalculator extends Fragment {
         initUIFromModel();
         CommandDelegator.reset();
         clearEnteredValue();
+        MainActivity.getLogFragment().reset();
     }
 }
