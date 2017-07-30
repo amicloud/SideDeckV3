@@ -1,5 +1,6 @@
 package com.outplaysoftworks.sidedeck;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.grantland.widget.AutofitHelper;
 
 
 /**
@@ -27,6 +29,7 @@ import butterknife.ButterKnife;
  */
 public class LpLog extends Fragment {
     private OnFragmentInteractionListener mListener;
+    @SuppressLint("UseSparseArrays")
     HashMap<Integer, LinearLayout> headers = new HashMap<Integer, LinearLayout>();
 
     @BindView(R.id.loglist)
@@ -160,6 +163,7 @@ public class LpLog extends Fragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         LinearLayout entry = (LinearLayout) inflater.inflate(R.layout.log_list_item, null);
         TextView tvName = ButterKnife.findById(entry, R.id.logListItemPlayerName);
+        AutofitHelper.create(tvName);
         TextView tvLpDifference = ButterKnife.findById(entry, R.id.logListItemLpDifference);
         TextView tvLpAfter = ButterKnife.findById(entry, R.id.logListItemLpFinal);
         ImageView ivArrow = ButterKnife.findById(entry, R.id.logListItemArrow);
@@ -171,7 +175,6 @@ public class LpLog extends Fragment {
                 tvName.setText(LpCalculatorModel.getPlayer2Name());
                 break;
         }
-        //TODO: Arrow drawables
         if(isIncrease){
             tvLpDifference.setTextColor(getResources().getColor(R.color.colorGreen));
         } else{
@@ -180,8 +183,6 @@ public class LpLog extends Fragment {
         }
         tvLpDifference.setText(Integer.toString(diff));
         tvLpAfter.setText(Integer.toString(lpAfter));
-
-
         header.addView(entry, 1);
     }
 

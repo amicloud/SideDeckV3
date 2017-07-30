@@ -356,4 +356,6 @@ public class LpCalculator extends Fragment {
         clearEnteredValue();
         MainActivity.getLogFragment().reset();
     }
+
+
 }
