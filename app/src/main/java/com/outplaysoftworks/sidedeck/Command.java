@@ -6,6 +6,10 @@ package com.outplaysoftworks.sidedeck;
 
 public interface Command {
 
+    public enum PLAYER{
+        PLAYER1, PLAYER2
+    }
+
     void execute();
 
     void unExecute();

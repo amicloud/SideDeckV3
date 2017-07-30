@@ -1,5 +1,6 @@
 package com.outplaysoftworks.sidedeck;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -46,6 +47,7 @@ public class LpCalculator extends Fragment {
     @BindView(R.id.LpCalculatorButtonTurn)
     Button btTurn;
     private OnFragmentInteractionListener mListener;
+    private boolean checkEnteredValue = false;
 
     public LpCalculator() {
         // Required empty public constructor
@@ -110,6 +112,7 @@ public class LpCalculator extends Fragment {
 
     private void initFromSettings(boolean resetPlayerNames) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        checkEnteredValue = preferences.getBoolean(getString(R.string.KEYcheckSafeEntry), false);
         LpCalculatorModel.setLpDefault(Integer.parseInt(preferences.getString(getString(R.string.KEYdefaultLpSetting), "8000")));
         LpCalculatorModel.setPlayer1Name(preferences.getString(getString(R.string.KEYplayerOneDefaultNameSetting), getString(R.string.playerOne)));
         LpCalculatorModel.setPlayer2Name(preferences.getString(getString(R.string.KEYplayerTwoDefaultNameSetting), getString(R.string.playerTwo)));
@@ -227,6 +230,19 @@ public class LpCalculator extends Fragment {
     @OnClick(R.id.LpCalculatorButtonPlusPlayer1)
     public void onClickPlusPlayer1(View view){
         if(tvEnteredValue.getText().equals("")) return;
+        if(checkEnteredValue && (Integer.parseInt(tvEnteredValue.getText().toString()) > 100000)){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.confirmEntryDialog);
+            builder.setTitle(R.string.checkForSafeEntryTitle)
+                    .setMessage(getString(R.string.theEnteredNumber) + tvEnteredValue.getText().toString() + getString(R.string.seemsTooLarge))
+                    .setPositiveButton(R.string.yes, ((dialog, which) -> plusPlayer1()))
+                    .setNegativeButton(R.string.notReally, ((dialog, which) -> clearEnteredValue()))
+                    .show();
+        } else{
+            plusPlayer1();
+        }
+    }
+
+    private void plusPlayer1(){
         LpLog log = MainActivity.getLogFragment();
         AddLpCommand command = new AddLpCommand(1, LpCalculatorModel.getEnteredValue(), tvPlayer1Lp, log);
         command.execute();
@@ -236,6 +252,19 @@ public class LpCalculator extends Fragment {
     @OnClick(R.id.LpCalculatorButtonMinusPlayer1)
     public void onClickMinusPlayer1(View view){
         if(tvEnteredValue.getText().equals("")) return;
+        if(checkEnteredValue && (Integer.parseInt(tvEnteredValue.getText().toString()) > 100000)){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.confirmEntryDialog);
+            builder.setTitle(R.string.checkForSafeEntryTitle)
+                    .setMessage(getString(R.string.theEnteredNumber) + tvEnteredValue.getText().toString() + getString(R.string.seemsTooLarge))
+                    .setPositiveButton(R.string.yes, ((dialog, which) -> minusPlayer1()))
+                    .setNegativeButton(R.string.notReally, ((dialog, which) -> clearEnteredValue()))
+                    .show();
+        } else{
+            minusPlayer1();
+        }
+    }
+
+    private void minusPlayer1(){
         LpLog log = MainActivity.getLogFragment();
         SubtractLpCommand command = new SubtractLpCommand(1, LpCalculatorModel.getEnteredValue(), tvPlayer1Lp, log);
         command.execute();
@@ -245,6 +274,19 @@ public class LpCalculator extends Fragment {
     @OnClick(R.id.LpCalculatorButtonPlusPlayer2)
     public void onClickPlusPlayer2(View view){
         if(tvEnteredValue.getText().equals("")) return;
+        if(checkEnteredValue && (Integer.parseInt(tvEnteredValue.getText().toString()) > 100000)){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.confirmEntryDialog);
+            builder.setTitle(R.string.checkForSafeEntryTitle)
+                    .setMessage(getString(R.string.theEnteredNumber) + tvEnteredValue.getText().toString() + getString(R.string.seemsTooLarge))
+                    .setPositiveButton(R.string.yes, ((dialog, which) -> plusPlayer2()))
+                    .setNegativeButton(R.string.notReally, ((dialog, which) -> clearEnteredValue()))
+                    .show();
+        } else{
+            plusPlayer2();
+        }
+    }
+
+    private void plusPlayer2(){
         LpLog log = MainActivity.getLogFragment();
         AddLpCommand command = new AddLpCommand(2, LpCalculatorModel.getEnteredValue(), tvPlayer2Lp, log);
         command.execute();
@@ -254,6 +296,19 @@ public class LpCalculator extends Fragment {
     @OnClick(R.id.LpCalculatorButtonMinusPlayer2)
     public void onClickMinusPlayer2(View view){
         if(tvEnteredValue.getText().equals("")) return;
+        if(checkEnteredValue && (Integer.parseInt(tvEnteredValue.getText().toString()) > 100000)){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.confirmEntryDialog);
+            builder.setTitle(R.string.checkForSafeEntryTitle)
+                    .setMessage(getString(R.string.theEnteredNumber) + tvEnteredValue.getText().toString() + getString(R.string.seemsTooLarge))
+                    .setPositiveButton(R.string.yes, ((dialog, which) -> minusPlayer2()))
+                    .setNegativeButton(R.string.notReally, ((dialog, which) -> clearEnteredValue()))
+                    .show();
+        } else{
+            minusPlayer2();
+        }
+    }
+
+    private void minusPlayer2(){
         LpLog log = MainActivity.getLogFragment();
         SubtractLpCommand command = new SubtractLpCommand(2, LpCalculatorModel.getEnteredValue(), tvPlayer2Lp, log);
         command.execute();
@@ -281,6 +336,20 @@ public class LpCalculator extends Fragment {
 
     @OnClick(R.id.LpCalculatorButtonReset)
     public void onClickReset(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.ResetDialog);
+        builder.setTitle(R.string.reset)
+                .setMessage(R.string.AreYouSure)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(R.string.yes, (dialog, which) -> {
+                    reset();
+                })
+                .setNegativeButton(R.string.cancel, (dialog, which) -> {
+
+                });
+        builder.show();
+    }
+
+    private void reset() {
         initFromSettings(false);
         initUIFromModel();
         CommandDelegator.reset();
