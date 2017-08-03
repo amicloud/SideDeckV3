@@ -23,43 +23,81 @@
         <item name="android:layout_marginRight">1dp</item>
         <item name="android:layout_marginLeft">1dp</item>
         <item name="android:clickable">true</item>
-        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
     </style>
     <style name="Button.Number">
         <item name="android:background">@drawable/button_pressed_number</item>
         <item name="android:textSize">35sp</item>
         <item name="android:typeface">monospace</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="Button.Plus">
         <item name="android:background">@drawable/button_pressed_green</item>
         <item name="android:textSize">35sp</item>
         <item name="android:typeface">monospace</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:gravity">center</item>
     </style>
     <style name="Button.Minus">
         <item name="android:background">@drawable/button_pressed_red</item>
         <item name="android:textSize">35sp</item>
         <item name="android:typeface">monospace</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="Button.Function">
         <item name="android:background">@drawable/button_pressed_function</item>
         <item name="android:typeface">sans</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Button.Turn">
+        <item name="android:maxLines">2</item>
     </style>
 
     <style name="Text">
-        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
     </style>
 
     <style name="Text.LpInput">
-
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">18sp</item>
     </style>
     <style name="Text.PlayerName">
-
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:inputType">textPersonName</item>
     </style>
     <style name="Text.PlayerLp">
-
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">30sp</item>
     </style>
 
 
@@ -68,7 +106,56 @@
         <item name="android:background">@color/colorBlack</item>
     </style>
 
-    <style name="LogHeader"></style>
+    <style name="LogHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/colorGrayLight</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+    </style>
+
+    <style name="LogItemHolder">
+        <item name="android:padding">8dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="LogItemText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="LogItemText.LpDifference">
+        <item name="android:textSize">22sp</item>
+
+    </style>
+
+    <style name="LogItemText.Name">
+
+    </style>
+
+    <style name="LogItemText.LpFinal">
+
+    </style>
+
+    <style name="LogItemText.Image">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:cropToPadding">false</item>
+        <item name="android:layout_width">22dp</item>
+    </style>
 
     <style name="ResetDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@color/colorAccent</item>
@@ -76,7 +163,10 @@
         <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
-    <style name="confirmEntryDialog" parent="ResetDialog"></style>
+    <style name="confirmEntryDialog" parent="ResetDialog">
+
+    </style>
+
 
 
 </resources>

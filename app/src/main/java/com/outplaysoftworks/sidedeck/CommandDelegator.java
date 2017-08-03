@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Handles general command functions and history
  */
 
-public class CommandDelegator {
+class CommandDelegator {
     static ArrayList<Command> commandHistory = new ArrayList<>();
 
     static boolean undoLastCommand(){
@@ -25,9 +25,7 @@ public class CommandDelegator {
 
     public static void executeAll() {
         ArrayList<Command> oldCommands = new ArrayList<>();
-        for(Command command : commandHistory){
-            oldCommands.add(command);
-        }
+        oldCommands.addAll(commandHistory);
         commandHistory.clear();
         for(Command command : oldCommands){
             command.execute();

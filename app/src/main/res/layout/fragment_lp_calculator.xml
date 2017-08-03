@@ -1,4 +1,13 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="Deprecated,NestedWeights">
+
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Background"
@@ -19,35 +28,20 @@
         <TextView
             android:id="@+id/LpCalculatorTextPlayer1Lp"
             style="@style/Text.PlayerLp"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:maxLines="1"
-            android:textSize="30sp"
-            tools:text="9999999"/>
+            tools:text="999999" />
 
         <Button
             android:id="@+id/LpCalculatorButtonTurn"
             style="@style/Button.Function"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
+            android:maxLines="2"
             android:text="@string/turn"
             android:textSize="14sp"
-            tools:text="TURN 99"/>
+            tools:text="TURN\n99" />
 
         <TextView
             android:id="@+id/LpCalculatorTextPlayer2Lp"
             style="@style/Text.PlayerLp"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:maxLines="1"
-            android:textSize="30sp"
-            tools:text="9999999"/>
+            tools:text="999999" />
     </LinearLayout>
 
     <LinearLayout
@@ -62,38 +56,17 @@
         <EditText
             android:id="@+id/LpCalculatorTextPlayer1Name"
             style="@style/Text.PlayerName"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:elevation="1dp"
-            android:gravity="center"
-            android:maxLines="1"
-            android:textSize="18sp"
-            tools:text="PLAYER NAME"/>
+            tools:text="PLAYER NAME" />
 
         <TextView
             android:id="@+id/LpCalculatorTextEnteredValue"
             style="@style/Text.LpInput"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:elevation="1dp"
-            android:gravity="center"
-            android:maxLines="1"
-            android:textSize="18sp"
             tools:text="999999"/>
 
         <EditText
             android:id="@+id/LpCalculatorTextPlayer2Name"
             style="@style/Text.PlayerName"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:elevation="1dp"
-            android:gravity="center"
-            android:maxLines="1"
-            android:textSize="18sp"
-            tools:text="PLAYER NAME"/>
+            tools:text="PLAYER NAME" />
 
     </LinearLayout>
 
@@ -106,20 +79,12 @@
         <Button
             android:id="@+id/LpCalculatorButtonPlusPlayer1"
             style="@style/Button.Plus"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
             android:text="@string/plusSign"
             />
 
         <Button
             android:id="@+id/LpCalculatorButtonDice"
             style="@style/Button.Function"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
             android:text="@string/diceRoll"
             android:textSize="14sp"
             />
@@ -127,10 +92,6 @@
         <Button
             android:id="@+id/LpCalculatorButtonPlusPlayer2"
             style="@style/Button.Plus"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
             android:text="@string/plusSign"
             />
     </LinearLayout>
@@ -144,20 +105,12 @@
         <Button
             android:id="@+id/LpCalculatorButtonMinusPlayer1"
             style="@style/Button.Minus"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
             android:text="@string/minusSign"
             />
 
         <Button
             android:id="@+id/LpCalculatorButtonCoin"
             style="@style/Button.Function"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
             android:text="@string/coinFlip"
             android:textSize="14sp"
             />
@@ -165,10 +118,6 @@
         <Button
             android:id="@+id/LpCalculatorButtonMinusPlayer2"
             style="@style/Button.Minus"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center"
             android:text="@string/minusSign"
             />
     </LinearLayout>
@@ -183,10 +132,6 @@
         <Button
             android:id="@+id/LpCalculatorButton7"
             style="@style/Button.Number"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
             android:tag="7"
             android:text="7"
             />
@@ -194,10 +139,6 @@
         <Button
             android:id="@+id/LpCalculatorButton8"
             style="@style/Button.Number"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
             android:tag="8"
             android:text="8"
             />
@@ -205,10 +146,6 @@
         <Button
             android:id="@+id/LpCalculatorButton9"
             style="@style/Button.Number"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
             android:tag="9"
             android:text="9"
             />
@@ -224,10 +161,6 @@
         <Button
             android:id="@+id/LpCalculatorButton4"
             style="@style/Button.Number"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
             android:tag="4"
             android:text="4"
             />
@@ -235,10 +168,6 @@
         <Button
             android:id="@+id/LpCalculatorButton5"
             style="@style/Button.Number"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
             android:tag="5"
             android:text="5"
             />
@@ -246,10 +175,6 @@
         <Button
             android:id="@+id/LpCalculatorButton6"
             style="@style/Button.Number"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
             android:tag="6"
             android:text="6"
             />
@@ -265,10 +190,6 @@
         <Button
             android:id="@+id/LpCalculatorButton1"
             style="@style/Button.Number"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
             android:tag="1"
             android:text="1"
             />
@@ -276,10 +197,6 @@
         <Button
             android:id="@+id/LpCalculatorButton2"
             style="@style/Button.Number"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
             android:tag="2"
             android:text="2"
             />
@@ -287,10 +204,6 @@
         <Button
             android:id="@+id/LpCalculatorButton3"
             style="@style/Button.Number"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
             android:tag="3"
             android:text="3"
             />
@@ -306,10 +219,6 @@
         <Button
             android:id="@+id/LpCalculatorButton0"
             style="@style/Button.Number"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
             android:tag="0"
             android:text="0"
             />
@@ -317,10 +226,6 @@
         <Button
             android:id="@+id/LpCalculatorButton00"
             style="@style/Button.Number"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
             android:tag="00"
             android:text="00"
             />
@@ -328,10 +233,6 @@
         <Button
             android:id="@+id/LpCalculatorButton000"
             style="@style/Button.Number"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
             android:tag="000"
             android:text="000"
             />
@@ -346,56 +247,449 @@
         <Button
             android:id="@+id/LpCalculatorButtonTimer"
             style="@style/Button.Function"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:maxLines="2"
             android:text="@string/timer"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/LpCalculatorButtonCalc"
             style="@style/Button.Function"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:maxLines="2"
             android:text="@string/calc"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/LpCalculatorButtonClear"
             style="@style/Button.Function"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:maxLines="2"
             android:text="@string/clear"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/LpCalculatorButtonReset"
             style="@style/Button.Function"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:maxLines="2"
             android:text="@string/reset"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/LpCalculatorButtonUndo"
             style="@style/Button.Function"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:maxLines="2"
             android:text="@string/undo"
-            android:textSize="14sp"/>
+            android:textSize="14sp" />
     </LinearLayout>
+
+
 </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/holderCalculator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View
+            android:id="@+id/spacerCalculatorTop"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="5"
+            android:background="@color/colorPrimaryDark"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/calculatorWork"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="3"
+                    android:clickable="true"
+                    android:enabled="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="top|end"
+                    android:maxLines="2"
+                    android:padding="4dp"
+                    android:textColor="@color/colorTextPrimary" />
+
+                <TextView
+                    android:id="@+id/calculatorResults"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginStart="1dp"
+                    android:layout_weight="2"
+                    android:clickable="true"
+                    android:enabled="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="bottom|end"
+                    android:maxLines="2"
+                    android:padding="4dp"
+                    android:textColor="@color/colorTextPrimary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="1dp"
+                android:layout_weight="7"
+                android:background="@android:color/transparent"
+                android:orientation="vertical"
+                tools:ignore="HardcodedText">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/calc7"
+                        style="@style/Button.Number"
+                        android:tag="7"
+                        android:text="7" />
+
+                    <Button
+                        android:id="@+id/calc8"
+                        style="@style/Button.Number"
+                        android:tag="8"
+                        android:text="8" />
+
+                    <Button
+                        android:id="@+id/calc9"
+                        style="@style/Button.Number"
+                        android:tag="9"
+                        android:text="9" />
+
+                    <Button
+                        android:id="@+id/calcLeftParen"
+                        style="@style/Button.Function"
+                        android:tag="("
+                        android:text="("
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/calcRightParen"
+                        style="@style/Button.Function"
+                        android:tag=")"
+                        android:text=")"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/calc4"
+                        style="@style/Button.Number"
+                        android:tag="4"
+                        android:text="4" />
+
+                    <Button
+                        android:id="@+id/calc5"
+                        style="@style/Button.Number"
+                        android:tag="5"
+                        android:text="5" />
+
+                    <Button
+                        android:id="@+id/calc6"
+                        style="@style/Button.Number"
+                        android:tag="6"
+                        android:text="6" />
+
+                    <Button
+                        android:id="@+id/calcMultiply"
+                        style="@style/Button.Function"
+                        android:tag="*"
+                        android:text="*"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/calcDivide"
+                        style="@style/Button.Function"
+                        android:tag="/"
+                        android:text="/"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/calc1"
+                        style="@style/Button.Number"
+                        android:tag="1"
+                        android:text="1" />
+
+                    <Button
+                        android:id="@+id/calc2"
+                        style="@style/Button.Number"
+                        android:tag="2"
+                        android:text="2" />
+
+                    <Button
+                        android:id="@+id/calc3"
+                        style="@style/Button.Number"
+                        android:tag="3"
+                        android:text="3" />
+
+                    <Button
+                        android:id="@+id/calcAdd"
+                        style="@style/Button.Function"
+                        android:tag="+"
+                        android:text="+"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/calcMinus"
+                        style="@style/Button.Function"
+                        android:tag="-"
+                        android:text="-"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/calcBackspace"
+                        style="@style/Button.Function"
+                        android:tag="backspace"
+                        android:text="&lt;"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/calc0"
+                        style="@style/Button.Number"
+                        android:tag="0"
+                        android:text="0" />
+
+                    <Button
+                        android:id="@+id/calcDecimal"
+                        style="@style/Button.Function"
+                        android:tag="."
+                        android:text="."
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/calcClear"
+                        style="@style/Button.Function"
+                        android:tag="clear"
+                        android:text="C"
+                        android:textSize="25sp" />
+
+                    <Button
+                        android:id="@+id/calcEquals"
+                        style="@style/Button.Function"
+                        android:background="@drawable/button_pressed_accent"
+                        android:tag="="
+                        android:text="="
+                        android:textSize="25sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/spacerCalculatorBottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/holderTimer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View
+            android:id="@+id/spacerTimerTop"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/colorGrayLight"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="9"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true" />
+
+                <TextView
+                    android:id="@+id/buttonTimerClose"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="X"
+                    android:textIsSelectable="false"
+                    android:textSize="28sp"
+                    android:typeface="monospace"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="2"
+                android:background="@color/colorBlack"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="1dp"
+                    android:layout_weight="10"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.jesusm.holocircleseekbar.lib.HoloCircleSeekBar
+                            android:id="@+id/picker"
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_centerInParent="true"
+                            app:init_position="2400"
+                            app:max="3600"
+                            app:pointer_color="@color/colorAccent"
+                            app:pointer_halo_color="@color/colorPrimaryDark"
+                            app:pointer_size="10dp"
+                            app:show_text="false"
+                            app:text_color="@color/colorWhite"
+                            app:text_size="65sp"
+                            app:wheel_active_color="@color/colorAccent"
+                            app:wheel_unactive_color="@color/colorPrimaryDark" />
+
+                        <TextView
+                            android:id="@+id/textTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:text="TIME"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/colorTextPrimary"
+                            android:textSize="48sp"
+                            tools:ignore="HardcodedText" />
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="1dp"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/buttonResetTimer"
+                        style="@style/Button.Number"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/reset"
+                        android:textSize="26sp"
+                        android:typeface="normal" />
+
+                    <Button
+                        android:id="@+id/buttonStartTimer"
+                        style="@style/Button.Number"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/start"
+                        android:textSize="26sp"
+                        android:typeface="normal" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/spacerTimerBottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+</AbsoluteLayout>

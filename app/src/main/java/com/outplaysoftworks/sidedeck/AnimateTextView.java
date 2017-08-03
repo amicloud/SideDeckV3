@@ -14,7 +14,7 @@ class AnimateTextView {
      * @param initialValue Value to start at
      * @param finalValue Value to finish animation at
      * @param textview Target TextView
-     * @param isZero If true uses longer animation duration to accommodate longer sond effects
+     * @param isZero If true uses longer animation duration to accommodate longer sound effects
      */
     static void animateTextView(int initialValue, int finalValue, final TextView textview, boolean isZero) {
         if (initialValue != finalValue) { //will not do anything if both values are equal

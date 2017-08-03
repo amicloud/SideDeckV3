@@ -10,10 +10,10 @@ import static com.outplaysoftworks.sidedeck.AnimateTextView.animateTextView;
 
 class AddLpCommand implements Command {
 
-    private int target;
-    private int amount;
-    private TextView textView;
-    private LpLog log;
+    private final int target;
+    private final int amount;
+    private final TextView textView;
+    private final LpLog log;
 
     AddLpCommand(int target, int amount, TextView textView, LpLog log) {
         this.target = target;

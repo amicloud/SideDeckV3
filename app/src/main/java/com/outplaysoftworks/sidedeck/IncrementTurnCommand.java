@@ -11,7 +11,7 @@ public class IncrementTurnCommand implements Command {
 
     private final Button btTurn;
     private final String turnString;
-    LpLog logFragment;
+    private final LpLog logFragment;
 
     public IncrementTurnCommand(Button btTurn, String turnString, LpLog logFragment) {
         this.btTurn = btTurn;

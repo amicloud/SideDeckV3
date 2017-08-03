@@ -30,7 +30,7 @@ import static org.hamcrest.Matchers.not;
 @RunWith(AndroidJUnit4.class)
 //@LargeTest
 public class LpCalculatorTests {
-    private int durationSleepPadding = 250;
+    private final int durationSleepPadding = 250;
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(

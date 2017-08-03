@@ -30,7 +30,7 @@ import me.grantland.widget.AutofitHelper;
 public class LpLog extends Fragment {
     private OnFragmentInteractionListener mListener;
     @SuppressLint("UseSparseArrays")
-    HashMap<Integer, LinearLayout> headers = new HashMap<Integer, LinearLayout>();
+    private HashMap<Integer, LinearLayout> headers = new HashMap<>();
 
     @BindView(R.id.loglist)
     LinearLayout lvEntries;
@@ -148,17 +148,17 @@ public class LpLog extends Fragment {
         }
     }
 
-    public void addHeader(){
+    private void addHeader(){
         String turnString = getString(R.string.turn).trim() + " " + LpCalculatorModel.getCurrentTurn();
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        LinearLayout header = (LinearLayout) inflater.inflate(R.layout.log_list_group, null);
+        @SuppressLint("InflateParams") LinearLayout header = (LinearLayout) inflater.inflate(R.layout.log_list_group, null);
         TextView text = ButterKnife.findById(header, R.id.logListHeader);
         text.setText(turnString);
         headers.put(LpCalculatorModel.getCurrentTurn(), header);
         lvEntries.addView(header, 0);
     }
 
-    public void addEntryToHeader(int player, int diff, int lpAfter, boolean isIncrease){
+    private void addEntryToHeader(int player, int diff, int lpAfter, boolean isIncrease){
         LinearLayout header = headers.get(LpCalculatorModel.getCurrentTurn());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         LinearLayout entry = (LinearLayout) inflater.inflate(R.layout.log_list_item, null);
@@ -177,6 +177,7 @@ public class LpLog extends Fragment {
         }
         if(isIncrease){
             tvLpDifference.setTextColor(getResources().getColor(R.color.colorGreen));
+            ivArrow.setImageDrawable(getResources().getDrawable(R.drawable.arrow_up));
         } else{
             tvLpDifference.setTextColor(getResources().getColor(R.color.colorRed));
             ivArrow.setImageDrawable(getResources().getDrawable(R.drawable.arrow_down));

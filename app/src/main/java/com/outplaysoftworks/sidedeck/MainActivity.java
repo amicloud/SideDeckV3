@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements LpCalculator.OnFr
     @Override
     protected void onStart() {
         super.onStart();
-        //TODO: Use this callback to instantiate the UI stuff
     }
 
     @Override

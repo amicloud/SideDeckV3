@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="trans">#00b3e5fc</color>
     <color name="colorPrimaryDark">#252525</color>
     <color name="colorPrimary">#272727</color>
     <color name="colorGrayLight">#787878</color>
@@ -15,5 +14,6 @@
     <color name="colorGreenDark">#01a014</color>
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorTextPrimary">#ffffff</color>
     <color name="colorDivider">#d8d8d8</color>
 </resources>

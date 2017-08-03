@@ -24,7 +24,7 @@ import static junit.framework.Assert.assertEquals;
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class)
 public class LpCalculatorRoboTests {
-    MainActivity activity;
+    private MainActivity activity;
     private int durationSleepPadding = 250;
 
     @Before

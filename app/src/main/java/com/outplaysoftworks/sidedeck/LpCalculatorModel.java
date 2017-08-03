@@ -4,7 +4,7 @@ package com.outplaysoftworks.sidedeck;
  * Created by Billy on 7/22/2017.
  */
 
-public class LpCalculatorModel {
+class LpCalculatorModel {
     static private String player1Name;
     static private String player2Name;
     static private boolean allowsNegativeLp;
@@ -17,8 +17,9 @@ public class LpCalculatorModel {
     static int getEnteredValue() {
         return mEnteredValue;
     }
-    private static void setEnteredValue(int enteredValue) {
+    static boolean setEnteredValue(int enteredValue) {
         mEnteredValue = enteredValue;
+        return true;
     }
 
     /**
@@ -114,7 +115,7 @@ public class LpCalculatorModel {
         return currentTurn;
     }
 
-    private static void setCurrentTurn(int zcurrentTurn) {
+    private static void setCurrentTurn(@SuppressWarnings("SameParameterValue") int zcurrentTurn) {
         currentTurn = zcurrentTurn;
     }
 

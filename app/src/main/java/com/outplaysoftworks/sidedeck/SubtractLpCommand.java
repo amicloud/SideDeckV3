@@ -6,10 +6,10 @@ import static com.outplaysoftworks.sidedeck.AnimateTextView.animateTextView;
 
 class SubtractLpCommand implements Command {
 
-    private int target;
+    private final int target;
     private int amount;
-    private TextView textView;
-    private LpLog log;
+    private final TextView textView;
+    private final LpLog log;
 
     SubtractLpCommand(int target, int amount, TextView textView, LpLog log) {
         this.target = target;
@@ -36,10 +36,7 @@ class SubtractLpCommand implements Command {
                     }
                 }
                 LpCalculatorModel.subtractLpFromPlayer1(amount);
-                zero = false;
-                if(LpCalculatorModel.getPlayer1Lp() == 0){
-                    zero = true;
-                }
+                zero = LpCalculatorModel.getPlayer1Lp() == 0;
                 animateTextView(prevLp, LpCalculatorModel.getPlayer1Lp(), textView, zero);
                 log.onSubtract(this);
                 return;
@@ -49,16 +46,13 @@ class SubtractLpCommand implements Command {
                     if(!LpCalculatorModel.getAllowsNegativeLp()){
                         amount = LpCalculatorModel.getPlayer2Lp();
                         LpCalculatorModel.subtractLpFromPlayer2(amount);
-                        animateTextView(prevLp, LpCalculatorModel.getPlayer2Lp(), textView, false);
+                        animateTextView(prevLp, LpCalculatorModel.getPlayer2Lp(), textView, true);
                         log.onSubtract(this);
                         return;
                     }
                 }
                 LpCalculatorModel.subtractLpFromPlayer2(amount);
-                zero = false;
-                if(LpCalculatorModel.getPlayer2Lp() == 0){
-                    zero = true;
-                }
+                zero = LpCalculatorModel.getPlayer2Lp() == 0;
                 animateTextView(prevLp, LpCalculatorModel.getPlayer2Lp(), textView, zero);
                 log.onSubtract(this);
                 return;
