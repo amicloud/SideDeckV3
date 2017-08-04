@@ -16,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 public class MainActivity extends AppCompatActivity implements LpCalculator.OnFragmentInteractionListener, LpLog.OnFragmentInteractionListener{
 
     /**
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements LpCalculator.OnFr
      */
     @SuppressWarnings("FieldCanBeLocal")
     public static SectionsPagerAdapter mSectionsPagerAdapter;
-
+    private FirebaseAnalytics mFirebaseAnalytics;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -61,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements LpCalculator.OnFr
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
     }
 

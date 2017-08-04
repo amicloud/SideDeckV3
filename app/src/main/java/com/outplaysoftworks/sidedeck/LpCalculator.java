@@ -190,7 +190,6 @@ public class LpCalculator extends Fragment {
         setPickerListener();
         currentTimeInSeconds = getDefaultTimerTime();
         setupTextChangedListerners();
-//        MainActivity.getLogFragment().reset();
         restoreFromCommandDelegator();
     }
 
